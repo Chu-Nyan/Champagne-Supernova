@@ -171,3 +171,78 @@ namespace LightPathCycle
         }
     }
 }
+
+//당구 연습, https://school.programmers.co.kr/learn/courses/30/lessons/169198
+namespace CodingTest.BilliardsPractice
+{
+    public class Solution
+    {
+        public int[] solution(int m, int n, int startX, int startY, int[,] balls)
+        {
+            int[] answer = new int[balls.GetLength(0)];
+            List<Vector2> list = new List<Vector2>();
+
+            for (int i = 0; i < balls.GetLength(0); i++)
+            {
+                Vector2 end = new Vector2(balls[i, 0], balls[i, 1]);
+                int minDir = int.MaxValue;
+
+                var right = new Vector2(m + (m - startX), startY);
+                var left = new Vector2(-startX, startY);
+                var top = new Vector2(startX, n + (n - startY));
+                var bottom = new Vector2(startX, -startY);
+
+                list.Add(right);
+                list.Add(left);
+                list.Add(top);
+                list.Add(bottom);
+
+                if (startX == end.X)
+                {
+                    if (startY > end.Y)
+                        list.Remove(bottom);
+                    else
+                        list.Remove(top);
+                }
+                else if (startY == end.Y)
+                {
+                    if (startX > end.X)
+                        list.Remove(left);
+                    else
+                        list.Remove(right);
+                }
+
+                foreach (var item in list)
+                {
+                    int lineC = Vector2.Distance(item, end);
+                    if (minDir > lineC)
+                        minDir = lineC;
+                }
+                list.Clear();
+                answer[i] = minDir;
+            }
+
+            return answer;
+        }
+    }
+
+    public struct Vector2
+    {
+        public int X;
+        public int Y;
+
+        public Vector2(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public static int Distance(Vector2 a, Vector2 b)
+        {
+            int disX = b.X - a.X;
+            int disY = b.Y - a.Y;
+
+            return (disX) * (disX) + (disY) * (disY);
+        }
+    }
+}
