@@ -246,3 +246,32 @@ namespace CodingTest.LightPathCycle
         }
     }
 }
+
+// 유사 칸토어 비트열, https://school.programmers.co.kr/learn/courses/30/lessons/148652
+// Note : 반복 되는 패턴을 찾아라
+namespace CodingTest.SimilarCantorBitSequence
+{
+    public class Solution
+    {
+        public int solution(int n, long l, long r)
+        {
+            int answer = 0;
+            for (long i = l - 1; i < r; i++)
+            {
+                answer += aaa(i);
+            }
+
+            return answer;
+        }
+
+        public int aaa(long number)
+        {
+            if (number % 5 == 2)
+                return 0;
+            else if (number < 4)
+                return 1;
+            else
+                return aaa(number / 5);
+        }
+    }
+}
