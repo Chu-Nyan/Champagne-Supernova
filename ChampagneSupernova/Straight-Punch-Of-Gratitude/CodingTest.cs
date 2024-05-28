@@ -1,4 +1,128 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+//교점에 별 만들기, https://school.programmers.co.kr/learn/courses/30/lessons/87377
+namespace CodingTest.CreateStarAtIntersection
+{
+    public class Solution
+    {
+        public string[] solution(int[,] line)
+        {
+            Dictionary<long, List<Vector2>> vectors = new Dictionary<long, List<Vector2>>();
+            int[] a = new int[3];
+            int[] b = new int[3];
+
+            var maxXY = new Vector2(long.MinValue, long.MinValue);
+            var minXY = new Vector2(long.MaxValue, long.MaxValue);
+
+            int count = line.GetLength(0);
+            for (int i = 0; i < count - 1; i++)
+            {
+                a[0] = line[i, 0];
+                a[1] = line[i, 1];
+                a[2] = line[i, 2];
+
+                for (int j = i + 1; j < count; j++)
+                {
+                    b[0] = line[j, 0];
+                    b[1] = line[j, 1];
+                    b[2] = line[j, 2];
+
+                    if (Vector2.InregerIntersection(a, b, out var vector2) == false)
+                        continue;
+
+                    if (vectors.TryAdd(vector2.Y, new List<Vector2>()) == false) { }
+
+                    vectors[vector2.Y].Add(vector2);
+
+                    maxXY.X = Math.Max(maxXY.X, vector2.X);
+                    maxXY.Y = Math.Max(maxXY.Y, vector2.Y);
+
+                    minXY.X = Math.Min(minXY.X, vector2.X);
+                    minXY.Y = Math.Min(minXY.Y, vector2.Y);
+                }
+            }
+
+            string[] answer = new string[maxXY.Y - minXY.Y + 1];
+            StringBuilder sb = new StringBuilder();
+            long width = maxXY.X - minXY.X + 1;
+            for (long i = 0; i < width; i++)
+            {
+                sb.Append('.');
+            }
+            string defa = sb.ToString();
+
+            for (long i = minXY.Y; i <= maxXY.Y; i++)
+            {
+                if (vectors.ContainsKey(i) == true)
+                {
+                    sb.Clear();
+                    var list = vectors[i];
+                    foreach (var item in list)
+                    {
+                        if (sb.Length == 0)
+                            sb.Append(defa);
+
+                        sb[(int)(item.X - minXY.X)] = '*';
+                    }
+                    answer[maxXY.Y - i] = sb.ToString();
+                }
+                else
+                {
+                    answer[maxXY.Y - i] = defa;
+                }
+            }
+
+            return answer;
+        }
+    }
+
+    public struct Vector2
+    {
+        public long X;
+        public long Y;
+
+        public Vector2(long x, long y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public static bool InregerIntersection(int[] a, int[] b, out Vector2 vector2)
+        {
+            vector2 = new Vector2();
+
+            decimal a1 = a[0];
+            decimal a2 = b[0];
+
+            decimal b1 = a[1];
+            decimal b2 = b[1];
+
+            decimal c1 = a[2];
+            decimal c2 = b[2];
+
+            decimal determinant = a1 * b2 - a2 * b1;
+            if (determinant == 0)
+            {
+                return false;
+            }
+            else
+            {
+                decimal x = (b1 * c2 - b2 * c1) / determinant;
+                decimal y = (a2 * c1 - a1 * c2) / determinant;
+
+                if (x % 1 != 0 || y % 1 != 0)
+                {
+                    return false;
+                }
+                vector2.X = (long)x;
+                vector2.Y = (long)y;
+                return true;
+            }
+        }
+    }
+}
 
 //당구 연습, https://school.programmers.co.kr/learn/courses/30/lessons/169198
 namespace CodingTest.BilliardsPractice
