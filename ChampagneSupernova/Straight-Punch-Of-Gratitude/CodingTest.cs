@@ -275,3 +275,69 @@ namespace CodingTest.SimilarCantorBitSequence
         }
     }
 }
+
+// 도넛과 막대 그래프, https://school.programmers.co.kr/learn/courses/30/lessons/258711
+namespace CodingTest.DonutAndLeafGraph
+{
+    public class Solution
+    {
+        public int[] solution(int[,] edges)
+        {
+            Dictionary<int, Node> lines = new Dictionary<int, Node>();
+
+            for (int i = 0; i < edges.GetLength(0); i++)
+            {
+                int Index = edges[i, 0];
+                int nextIndex = edges[i, 1];
+
+                if (lines.TryAdd(Index, new Node(Index))) { }
+
+                if (lines.TryGetValue(nextIndex, out Node nextNode) == false)
+                {
+                    nextNode = new Node(nextIndex);
+                    lines.Add(nextIndex, nextNode);
+                }
+
+                nextNode.Before++;
+                lines[Index].Next++;
+            }
+
+            int[] answer = new int[] { 0, 0, 0, 0 };
+            foreach (var item in lines)
+            {
+                var node = item.Value;
+
+                if (node.Before == 0 && node.Next >= 2)
+                {
+                    answer[0] = node.Index;
+                }
+                else if (node.Next == 0)
+                {
+                    answer[2]++;
+                }
+                else if (node.Next == 2 && node.Before >= 2)
+                {
+                    answer[3]++;
+                }
+            }
+
+            answer[1] = lines[answer[0]].Next - answer[2] - answer[3];
+
+            return answer;
+        }
+    }
+
+    public class Node
+    {
+        public int Index;
+        public int Next;
+        public int Before;
+
+        public Node(int index)
+        {
+            Index = index;
+            Next = 0;
+            Before = 0;
+        }
+    }
+}
