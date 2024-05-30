@@ -2,6 +2,66 @@
 using System.Collections.Generic;
 using System.Text;
 
+//택배 배달과 수거하기, https://school.programmers.co.kr/learn/courses/30/lessons/150369
+namespace CodingTest.DeliveryAndCollection
+{
+    public class Solution
+    {
+        private int _indexD;
+        private int _indexP;
+        private int _longDis;
+
+        public long solution(int cap, int n, int[] deliveries, int[] pickups)
+        {
+            long answer = 0;
+            _indexD = n - 1;
+            _indexP = _indexD;
+
+            while (_indexD >= 0 || _indexP >= 0)
+            {
+                _longDis = -1;
+
+                _indexD = GoGo(deliveries, cap, _indexD);
+                _indexP = GoGo(pickups, cap, _indexP);
+
+                answer += _longDis + 1;
+            }
+
+            return answer * 2;
+        }
+
+        public int GoGo(int[] pickups, int remainCap, int index)
+        {
+            while (index >= 0)
+            {
+                if (pickups[index] <= 0)
+                    index--;
+                else if (remainCap == 0)
+                    break;
+                else
+                {
+                    if (_longDis < index)
+                        _longDis = Math.Max(_longDis, index);
+
+                    int value = pickups[index] - remainCap;
+                    if (value <= 0)
+                    {
+                        remainCap = -value;
+                        pickups[index] = 0;
+                    }
+                    else
+                    {
+                        remainCap = 0;
+                        pickups[index] = value;
+                    }
+                }
+            }
+
+            return index;
+        }
+    }
+}
+
 //교점에 별 만들기, https://school.programmers.co.kr/learn/courses/30/lessons/87377
 namespace CodingTest.CreateStarAtIntersection
 {
