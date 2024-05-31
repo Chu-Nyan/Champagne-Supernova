@@ -2,6 +2,103 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 조이스틱, https://school.programmers.co.kr/learn/courses/30/lessons/42860
+// 탐욕법
+namespace CodingTest.JoyStick
+{
+    public class Solution
+    {
+        public int solution(string name)
+        {
+            JoyStick joyStick = new JoyStick(name);
+            int answer = 0;
+
+            joyStick.MoveNext(0, 0);
+            for (int i = 0; i < name.Length; i++)
+            {
+                int right = name[i] - 'A';
+                int left = 'A' - name[i] + 26;
+                answer += left < right ? left : right;
+            }
+            answer += joyStick.Min;
+            return answer;
+        }
+    }
+
+    public class JoyStick
+    {
+        public int Length;
+        public int Min = int.MaxValue;
+        bool[] bools;
+
+        public JoyStick(string text)
+        {
+            Length = text.Length;
+            bools = new bool[Length];
+            for (int i = 0; i < Length; i++)
+            {
+                bools[i] = text[i] == 'A';
+            }
+        }
+
+        public void MoveNext(int start, int dis)
+        {
+            if (dis > Length)
+                return;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (bools[i] == false)
+                    break;
+
+                if (i == Length - 1)
+                {
+                    Min = Math.Min(Min, dis);
+                    return;
+                }
+            }
+
+            int right = int.MaxValue;
+            int left = int.MaxValue;
+            int rightIndex = start;
+            int leftIndex = start;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (bools[i] == false)
+                {
+                    int tempLeft = (start - i + Length) % Length;
+                    int tempRight = (i - start + Length) % Length;
+
+                    if (left > tempLeft)
+                    {
+                        left = tempLeft;
+                        leftIndex = i;
+                    }
+                    if (right > tempRight)
+                    {
+                        right = tempRight;
+                        rightIndex = i;
+                    }
+                }
+            }
+
+            if (left != int.MaxValue)
+            {
+                bools[leftIndex] = true;
+                MoveNext(leftIndex, dis + left);
+                bools[leftIndex] = false;
+            }
+            if (right != int.MaxValue)
+            {
+                bools[rightIndex] = true;
+                MoveNext(rightIndex, dis + right);
+                bools[rightIndex] = false;
+            }
+        }
+    }
+}
+
 // 양궁대회, https://school.programmers.co.kr/learn/courses/30/lessons/92342
 // 완전 탐색과 백트래킹
 namespace CodingTest.ArcheryChampionships
