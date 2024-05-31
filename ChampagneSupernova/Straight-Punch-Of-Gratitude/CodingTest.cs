@@ -2,6 +2,101 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 양궁대회, https://school.programmers.co.kr/learn/courses/30/lessons/92342
+// 완전 탐색과 백트래킹
+namespace CodingTest.ArcheryChampionships
+{
+    public class Solution
+    {
+        private readonly int[] LionLose = new int[] { -1 };
+        private int[] bestShoots;
+        private int[] apeachShoot;
+        int diff = 0;
+
+        public int[] solution(int n, int[] info)
+        {
+            bestShoots = new int[11];
+            apeachShoot = info;
+            diff = int.MinValue;
+
+            for (int i = 0; i < 11; i++)
+            {
+                Com(new int[11], i, n);
+            }
+
+            return diff <= 0 ? LionLose : bestShoots;
+        }
+
+        public void Com(int[] current, int startIndex, int n)
+        {
+            int shoot = apeachShoot[startIndex] + 1;
+            if (n - shoot >= 0)
+            {
+                n -= shoot;
+                current[startIndex] = shoot;
+
+                int newDiff = ScoreValue(current, apeachShoot);
+                if (newDiff > diff)
+                {
+                    diff = newDiff;
+                    if (n > 0)
+                        current[10] = n;
+
+                    Array.Copy(current, bestShoots, 11);
+                    current[10] = 0;
+                }
+                else if (newDiff == diff)
+                {
+                    if (n > 0)
+                        current[10] = n;
+
+                    if (MinShoot(current, bestShoots))
+                    {
+                        Array.Copy(current, bestShoots, 11);
+                    }
+                    current[10] = 0;
+                }
+            }
+
+            for (int i = startIndex + 1; i < 11; i++)
+            {
+                if (n == 0)
+                    break;
+
+                Com(current, i, n);
+                current[i] = 0;
+            }
+        }
+
+        public static bool MinShoot(int[] newTarget, int[] oldTarget)
+        {
+            for (int i = oldTarget.Length - 1; i >= 0; i--)
+            {
+                if (oldTarget[i] > newTarget[i])
+                    return false;
+                else if (oldTarget[i] < newTarget[i])
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static int ScoreValue(int[] lion, int[] apeach)
+        {
+            int score = 0;
+            for (int i = 0; i < lion.Length; i++)
+            {
+                if (lion[i] != 0 && lion[i] > apeach[i])
+                    score += 10 - i;
+                else if (apeach[i] != 0 && lion[i] <= apeach[i])
+                    score -= 10 - i;
+            }
+
+            return score;
+        }
+    }
+}
+
 //택배 배달과 수거하기, https://school.programmers.co.kr/learn/courses/30/lessons/150369
 namespace CodingTest.DeliveryAndCollection
 {
