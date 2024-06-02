@@ -2,6 +2,72 @@
 using System.Collections.Generic;
 using System.Text;
 
+// N-Queen, https://school.programmers.co.kr/learn/courses/30/lessons/12952
+// 백트래킹 대표 알고리즘 문제
+namespace CodingTest.NQueen
+{
+    public class Solution
+    {
+        private int _length;
+        private int _answer;
+        private List<Cell> _cells;
+
+        public int solution(int n)
+        {
+            _cells = new List<Cell>(n);
+            _length = n;
+            Start(0);
+            return _answer;
+        }
+
+        public void Start(int y)
+        {
+            if (y == _length)
+            {
+                if (_cells.Count == _length)
+                    _answer++;
+                return;
+            }
+
+            for (int i = 0; i < _length; i++)
+            {
+                if (Promising(i, y) == false)
+                    continue;
+
+                var cell = new Cell(i, y);
+                _cells.Add(cell);
+                Start(y + 1);
+                _cells.Remove(cell);
+            }
+        }
+
+        public bool Promising(int x, int y)
+        {
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                if (x == _cells[i].X
+                 || y == _cells[i].Y
+                 || Math.Abs(x - _cells[i].X) == Math.Abs(y - _cells[i].Y))
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
+    public struct Cell
+    {
+        public int X;
+        public int Y;
+
+        public Cell(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+}
+
 // 조이스틱, https://school.programmers.co.kr/learn/courses/30/lessons/42860
 // 탐욕법
 namespace CodingTest.JoyStick
