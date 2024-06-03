@@ -2,6 +2,98 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 혼자서 하는 틱택토, https://school.programmers.co.kr/learn/courses/30/lessons/160585
+namespace CodingTest.StandAloneTicTacTok
+{
+    public enum Player { None, P1, P2, }
+
+    public class Solution
+    {
+        public Player[,] boards = new Player[3, 3];
+        public int p1Count = 0;
+        public int p2Count = 0;
+        public Player winner;
+
+        public int solution(string[] board)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                int x = i % 3;
+                int y = i / 3;
+
+                if (board[y][x] == 'O')
+                {
+                    boards[y, x] = Player.P1;
+                    p1Count++;
+                }
+                else if (board[y][x] == 'X')
+                {
+                    boards[y, x] = Player.P2;
+                    p2Count++;
+                }
+                else
+                {
+                    boards[y, x] = Player.None;
+                }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (CheckSame(boards[i, 0], boards[i, 1]) && CheckSame(boards[i, 0], boards[i, 2]))
+                {
+                    if (winner != boards[i, 0] && winner != Player.None)
+                        return 0;
+
+                    winner = boards[i, 0];
+                }
+                if (CheckSame(boards[0, i], boards[1, i]) && CheckSame(boards[0, i], boards[2, i]))
+                {
+                    if (winner != boards[0, i] && winner != Player.None)
+                        return 0;
+
+                    winner = boards[0, i];
+                }
+            }
+
+            if ((CheckSame(boards[0, 0], boards[1, 1]) && CheckSame(boards[0, 0], boards[2, 2])) ||
+                (CheckSame(boards[0, 2], boards[1, 1]) && CheckSame(boards[0, 2], boards[2, 0])))
+            {
+                if (winner != boards[1, 1] && winner != Player.None)
+                    return 0;
+
+                winner = boards[1, 1];
+            }
+
+            if (p1Count - p2Count != 0 && p1Count - p2Count != 1)
+                return 0;
+            if (winner != Player.None)
+                return Check(winner);
+
+            return 1;
+        }
+
+        public int Check(Player winner)
+        {
+            if (winner == Player.P1 && p1Count - p2Count != 1)
+                return 0;
+            if (winner == Player.P2 && p1Count - p2Count != 0)
+                return 0;
+
+            return 1;
+        }
+
+        public bool CheckSame(Player a, Player b)
+        {
+            if (a == Player.None || b == Player.None)
+                return false;
+            else if (a == b)
+                return true;
+            else
+                return false;
+        }
+    }
+}
+
 // N-Queen, https://school.programmers.co.kr/learn/courses/30/lessons/12952
 // 백트래킹 대표 알고리즘 문제
 namespace CodingTest.NQueen
