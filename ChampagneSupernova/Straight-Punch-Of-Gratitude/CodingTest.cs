@@ -2,6 +2,79 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 요격 시스템, https://school.programmers.co.kr/learn/courses/30/lessons/181188
+// 병합 정렬, 탐욕법
+namespace CodingTest.InterceptionSystem
+{
+    public class Solution
+    {
+        private int[,] _sortList;
+
+        public int solution(int[,] targets)
+        {
+            _sortList = new int[targets.GetLength(0), targets.GetLength(1)];
+            MergeSort(targets, 0, targets.GetLength(0) - 1);
+            double endNumber = double.MaxValue;
+            int count = 1;
+            for (int i = 0; i < targets.GetLength(0); i++)
+            {
+                if (targets[i, 0] < endNumber - 0.5f)
+                    endNumber = Math.Min(endNumber, targets[i, 1]);
+                else
+                {
+                    count++;
+                    endNumber = targets[i, 1];
+                }
+            }
+
+            return count;
+        }
+
+        public void MergeSort(int[,] arr, int left, int right)
+        {
+            if (left < right)
+            {
+                int mid = (right + left) / 2;
+
+                MergeSort(arr, left, mid);
+                MergeSort(arr, mid + 1, right);
+                Merge(arr, left, mid + 1, right);
+            }
+        }
+
+        private void Merge(int[,] arr, int left, int mid, int right)
+        {
+            int l = left;
+            int m = mid;
+            int r = right;
+
+            int index = l;
+            while (index <= r)
+            {
+                if (m > right || l < mid && arr[l, 0] <= arr[m, 0])
+                {
+                    _sortList[index, 0] = arr[l, 0];
+                    _sortList[index, 1] = arr[l, 1];
+                    l++;
+                }
+                else
+                {
+                    _sortList[index, 0] = arr[m, 0];
+                    _sortList[index, 1] = arr[m, 1];
+                    m++;
+                }
+                index++;
+            }
+
+            for (int i = left; i <= right; i++)
+            {
+                arr[i, 0] = _sortList[i, 0];
+                arr[i, 1] = _sortList[i, 1];
+            }
+        }
+    }
+}
+
 // 혼자서 하는 틱택토, https://school.programmers.co.kr/learn/courses/30/lessons/160585
 namespace CodingTest.StandAloneTicTacTok
 {
