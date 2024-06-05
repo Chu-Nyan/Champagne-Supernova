@@ -2,6 +2,68 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 혼자 놀기의 달인, https://school.programmers.co.kr/learn/courses/30/lessons/131130
+// Fail Case : 순위가 갱신되면 더 낮은 순위들은 밀어내기를 해야함
+namespace CodingTest.MasterOfSinglePlay
+{
+    public class Solution
+    {
+        // 0. cards =  i + 1번 상자에 담긴 카드
+        // 1. 모든 카드는 하나만 존재하기에 분리된 그룹을 이룬다.
+        // 2. 최종 값만 구하면 되기 떄문에 카드의 그룹에서 순서에 상관없이 뽑아도 된다
+        // 3.cards의 1번 부터 루프를 돌고 이미 돈 카드는 제거
+        // 4. 다음 상자가 열려 있을 때 끝나고 가장 큰 값임 (중복이 없기에)
+        // 4-1. 끝난 상자값의 count만 비교하면 됨
+        // 5. 가장 큰 연결된 노드 2개를 곱하여서 리턴
+
+        HashSet<int> _checkCard;
+        int[] _cards;
+        int[] _bestValue;
+
+        public int solution(int[] cards)
+        {
+            _checkCard = new HashSet<int>();
+            _bestValue = new int[2];
+            _cards = cards;
+
+            for (int i = 0; i < cards.Length; i++)
+            {
+                int loopCount = LoopCheck(i, 0);
+                if (loopCount != 0)
+                    DoubleMax(loopCount);
+            }
+
+            return _bestValue[0] * _bestValue[1];
+        }
+
+        public int LoopCheck(int index, int count)
+        {
+            if (_checkCard.Contains(index) == true)
+                return count;
+
+            count++;
+            _checkCard.Add(index);
+            return LoopCheck(_cards[index] - 1, count);
+        }
+
+        public void DoubleMax(int value)
+        {
+            if (value > _bestValue[1])
+            {
+                if (value <= _bestValue[0])
+                {
+                    _bestValue[1] = value;
+                }
+                else
+                {
+                    _bestValue[1] = _bestValue[0];
+                    _bestValue[0] = value;
+                }
+            }
+        }
+    }
+}
+
 // 요격 시스템, https://school.programmers.co.kr/learn/courses/30/lessons/181188
 // 병합 정렬, 탐욕법
 namespace CodingTest.InterceptionSystem
