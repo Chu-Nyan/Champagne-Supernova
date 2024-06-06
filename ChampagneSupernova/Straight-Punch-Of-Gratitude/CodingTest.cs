@@ -2,6 +2,88 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 이모티콘 할인 행사, https://school.programmers.co.kr/learn/courses/30/lessons/150368
+namespace CodingTest.EmoticonDiscountEvent
+{
+    public class Solution
+    {
+        private readonly int[] SaleCase = new int[] { 10, 20, 30, 40 };
+        private int[] _emoticons;
+        private int[,] _users;
+        int[,] _salesInfo;
+        int bestSub;
+        int bestMoney;
+
+        public int[] solution(int[,] users, int[] emoticons)
+        {
+            _emoticons = emoticons;
+            _users = users;
+            _salesInfo = new int[emoticons.Length, 4];
+            Check(0, new int[emoticons.Length]);
+            return new int[] { bestSub, bestMoney };
+        }
+
+        public void Check(int emoticonNum, int[] currentSale)
+        {
+            for (int i = 0; i < SaleCase.Length; i++)
+            {
+                if (_salesInfo[emoticonNum, i] == 0)
+                {
+                    int value = _emoticons[emoticonNum] * (100 - SaleCase[i]) / 100;
+                    _salesInfo[emoticonNum, i] = value;
+                }
+                currentSale[emoticonNum] = SaleCase[i];
+
+                if (emoticonNum + 1 < _emoticons.Length)
+                    Check(emoticonNum + 1, currentSale);
+                else
+                    BuyOrSub(currentSale);
+            }
+        }
+
+        public void BuyOrSub(int[] currentSale)
+        {
+            int totalSub = 0;
+            int totalMoney = 0;
+            for (int i = 0; i < _users.GetLength(0); i++)
+            {
+                var targetSale = _users[i, 0];
+                var money = _users[i, 1];
+                int buyEmoticon = 0;
+
+                for (int j = 0; j < currentSale.Length; j++)
+                {
+                    if (targetSale > currentSale[j])
+                        continue;
+
+                    int index = currentSale[j] / 10 - 1;
+                    buyEmoticon += _salesInfo[j, index];
+                }
+
+                if (buyEmoticon >= money)
+                    totalSub++;
+                else
+                    totalMoney += buyEmoticon;
+            }
+
+            MaxValue(totalSub, totalMoney);
+        }
+
+        public void MaxValue(int sub, int money)
+        {
+            if (bestSub < sub)
+            {
+                bestSub = sub;
+                bestMoney = money;
+            }
+            else if (bestSub == sub && bestMoney < money)
+            {
+                bestMoney = money;
+            }
+        }
+    }
+}
+
 // 혼자 놀기의 달인, https://school.programmers.co.kr/learn/courses/30/lessons/131130
 // Fail Case : 순위가 갱신되면 더 낮은 순위들은 밀어내기를 해야함
 namespace CodingTest.MasterOfSinglePlay
