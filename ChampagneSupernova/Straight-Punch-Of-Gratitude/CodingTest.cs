@@ -2,6 +2,34 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 두 원 사이의 정수 쌍, https://school.programmers.co.kr/learn/courses/30/lessons/181187
+// Fail Case : 1조는 long으로 표현이 불가능하지만 double로는 부동 소수점이기에 가능하다.
+// 2진수로 표현하는 게 아닌 부호, 가수와 지수로 표현하기 떄문이다.
+// 가수 -> 근접값 지수 -> 소수점의 위치
+namespace CodingTest.PairOfIntegersBetweenTwoCircles
+{
+    class Solution
+    {
+        public long solution(int r1, int r2)
+        {
+            long answer = 0;
+            double r22 = Math.Pow(r2, 2);
+            double r21 = Math.Pow(r1, 2);
+
+            for (int i = 1; i <= r2; i++)
+            {
+                double pow = Math.Pow(i, 2);
+                double y2 = Math.Sqrt(r22 - pow);
+                double y1 = Math.Sqrt(r21 - pow);
+                answer += ((long)y2 - (long)Math.Ceiling(y1) + 1);
+            }
+            answer *= 4;
+
+            return answer;
+        }
+    }
+}
+
 // 이모티콘 할인 행사, https://school.programmers.co.kr/learn/courses/30/lessons/150368
 namespace CodingTest.EmoticonDiscountEvent
 {
