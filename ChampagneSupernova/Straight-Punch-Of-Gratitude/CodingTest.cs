@@ -2,6 +2,123 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 과제 진행하기, https://school.programmers.co.kr/learn/courses/30/lessons/176962
+namespace CodingTest.HomworkProgress
+{
+    public class Solution
+    {
+        private Plan[] _tempArray;
+        private List<string> answers = new List<string>();
+        private Stack<Plan> remainStack = new Stack<Plan>();
+
+        public string[] solution(string[,] plans)
+        {
+            int count = plans.GetLength(0);
+            _tempArray = new Plan[count];
+            List<Plan> originalPlans = new List<Plan>(count);
+            for (int i = 0; i < count; i++)
+            {
+                string name = plans[i, 0];
+                int min = int.Parse(plans[i, 1].Substring(3, 2));
+                int hour = int.Parse(plans[i, 1].Substring(0, 2));
+                int remain = int.Parse(plans[i, 2]);
+                originalPlans.Add(new Plan(name, (hour * 60) + min, remain));
+            }
+            MergeSort(originalPlans, 0, count - 1);
+
+            while (originalPlans.Count > 0)
+            {
+                for (int i = 0; i < originalPlans.Count; i++)
+                {
+                    int nextIndex = i + 1;
+                    int gap = 0;
+                    if (nextIndex >= originalPlans.Count)
+                    {
+                        nextIndex = 0;
+                        gap += 2400;
+                    }
+                    gap += originalPlans[nextIndex].Start - originalPlans[i].Start;
+
+                    i -= PushRemainTime(originalPlans, i, gap);
+                    if (i < 0)
+                        i = -1;
+                }
+            }
+
+            return answers.ToArray();
+        }
+
+        public int PushRemainTime(List<Plan> arr, int index, int remain)
+        {
+            if (remainStack.Contains(arr[index]) == false)
+                remainStack.Push(arr[index]);
+
+            int remove = 0;
+            while (remain > 0 && remainStack.Count != 0)
+            {
+                var item = remainStack.Peek();
+                item.Remain -= remain;
+                remain = item.Remain <= 0 ? -item.Remain : 0;
+                if (item.Remain <= 0)
+                {
+                    answers.Add(item.Name);
+                    arr.Remove(item);
+                    remove++;
+                    remainStack.Pop();
+                }
+            }
+
+            return remove;
+        }
+
+        public void MergeSort(List<Plan> arr, int left, int right)
+        {
+            if (left >= right)
+                return;
+
+            int mid = (left + right) / 2;
+            MergeSort(arr, left, mid);
+            MergeSort(arr, mid + 1, right);
+            Sort(arr, left, mid + 1, right);
+        }
+
+        private void Sort(List<Plan> arr, int left, int mid, int right)
+        {
+            int l = left;
+            int m = mid;
+            int r = right;
+
+            int index = l;
+            while (index <= r)
+            {
+                if (m > right || l < mid && arr[l].Start <= arr[m].Start)
+                    _tempArray[index++] = arr[l++];
+                else
+                    _tempArray[index++] = arr[m++];
+            }
+
+            for (int i = left; i <= right; i++)
+            {
+                arr[i] = _tempArray[i];
+            }
+        }
+    }
+
+    public class Plan
+    {
+        public string Name;
+        public int Start;
+        public int Remain;
+
+        public Plan(string name, int start, int remain)
+        {
+            Name = name;
+            Start = start;
+            Remain = remain;
+        }
+    } 
+}
+
 // 두 원 사이의 정수 쌍, https://school.programmers.co.kr/learn/courses/30/lessons/181187
 // Fail Case : 1조는 long으로 표현이 불가능하지만 double로는 부동 소수점이기에 가능하다.
 // 2진수로 표현하는 게 아닌 부호, 가수와 지수로 표현하기 떄문이다.
