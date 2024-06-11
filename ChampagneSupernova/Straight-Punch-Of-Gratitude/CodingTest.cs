@@ -2,6 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 
+//우박수열 정적분, https://school.programmers.co.kr/learn/courses/30/lessons/134239
+namespace CodingTest.HailSequenceDefiniteIntegral
+{
+    public class Solution
+    {
+        List<double> _extents = new List<double>();
+        public double[] solution(int k, int[,] ranges)
+        {
+            _extents.Clear();
+            _extents.Add(0);
+
+            while (k > 1)
+            {
+                double beforeHeight = k;
+                if (k % 2 == 0)
+                    k /= 2;
+                else
+                    k = (k * 3) + 1;
+
+                double extent = (beforeHeight + k) / 2;
+                extent += _extents[_extents.Count - 1];
+                _extents.Add(extent);
+            }
+
+            int length = ranges.GetLength(0);
+            double[] answer = new double[length];
+            for (int i = 0; i < length; i++)
+            {
+                int startIndex = ranges[i, 0];
+                int endIndex = _extents.Count - 1 + ranges[i, 1];
+
+                answer[i] = startIndex <= endIndex ? _extents[endIndex] - _extents[startIndex] : -1.0f;
+            }
+            return answer;
+        }
+    }
+}
+
 // 과제 진행하기, https://school.programmers.co.kr/learn/courses/30/lessons/176962
 namespace CodingTest.HomworkProgress
 {
@@ -116,7 +154,7 @@ namespace CodingTest.HomworkProgress
             Start = start;
             Remain = remain;
         }
-    } 
+    }
 }
 
 // 두 원 사이의 정수 쌍, https://school.programmers.co.kr/learn/courses/30/lessons/181187
