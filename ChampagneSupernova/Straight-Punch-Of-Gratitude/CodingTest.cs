@@ -2,6 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 점찍기, https://school.programmers.co.kr/learn/courses/30/lessons/140107
+namespace CodingTest.ToDot
+{
+    // x^2 + y^2 = c^2 : 유클리드 거리
+
+    public class Solution
+    {
+        public long solution(int k, int d)
+        {
+            long answer = 0;
+            long maxLength = (long)d * d;
+            for (long i = 0; i <= d; i += k)
+            {
+                long squareY = i * i;
+                long maxX = (long)Math.Sqrt(maxLength - squareY);
+                answer += (maxX / k) + 1;
+            }
+
+            return answer;
+        }
+    }
+}
+
 //우박수열 정적분, https://school.programmers.co.kr/learn/courses/30/lessons/134239
 namespace CodingTest.HailSequenceDefiniteIntegral
 {
