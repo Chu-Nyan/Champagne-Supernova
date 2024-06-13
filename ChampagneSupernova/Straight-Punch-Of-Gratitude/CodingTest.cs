@@ -2,6 +2,35 @@
 using System.Collections.Generic;
 using System.Text;
 
+
+// 멀쩡한 사각형, https://school.programmers.co.kr/learn/courses/30/lessons/62048
+namespace CodingTest.ActivationSquare
+{
+    public class Solution
+    {
+        // 유클리드 호제법 
+        // int.max * int.max < long.max == true
+        // 자료형 우선 순위 
+        public long solution(int w, int h)
+        {
+            long a = w;
+            long b = h;
+            long c;
+
+            while (b != 0)
+            {
+                c = a % b;
+                a = b;
+                b = c;
+            }
+
+            long gcd = a;
+            long empty = ((w / gcd) + (h / gcd) - 1) * gcd;
+            return ((long)w * h) - empty;
+        }
+    }
+}
+
 // 점찍기, https://school.programmers.co.kr/learn/courses/30/lessons/140107
 namespace CodingTest.ToDot
 {
