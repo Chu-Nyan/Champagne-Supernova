@@ -3,6 +3,83 @@ using System.Collections.Generic;
 using System.Text;
 
 
+// 광물 캐기, https://school.programmers.co.kr/learn/courses/30/lessons/172927
+namespace CodingTest.Mining
+{
+    public class Solution
+    {
+        private readonly int[,] Fatigues = new int[,] { { 1, 1, 1 }, { 5, 1, 1 }, { 25, 5, 1 } };
+
+        public int solution(int[] picks, string[] minerals)
+        {
+            List<Mine> ints = new List<Mine>();
+            int maxMineingCount = Math.Min((picks[0] + picks[1] + picks[2]) * 5, minerals.Length);
+            for (int i = 0; i < maxMineingCount; i++)
+            {
+                int maxCount = 5 + i < minerals.Length ? 5 + i : minerals.Length;
+                var mine = new Mine();
+                for (int j = i; j < maxCount; j++)
+                {
+                    switch (minerals[j])
+                    {
+                        case "diamond":
+                            mine.Value += 25;
+                            mine.Dia++;
+                            break;
+                        case "iron":
+                            mine.Value += 5;
+                            mine.Iron++;
+                            break;
+                        case "stone":
+                            mine.Value += 1;
+                            mine.Stone++;
+                            break;
+                    }
+                }
+                ints.Add(mine);
+                i += 4;
+            }
+            ints.Sort();
+            ints.Reverse();
+
+            int answer = 0;
+            int check = 0;
+            for (int pick = 0; pick < 3; pick++)
+            {
+                for (int i = 0; i < picks[pick]; i++)
+                {
+                    if (maxMineingCount <= check * 5)
+                        break;
+
+                    var mine = ints[check];
+                    answer += Fatigues[pick, 0] * mine.Dia;
+                    answer += Fatigues[pick, 1] * mine.Iron;
+                    answer += Fatigues[pick, 2] * mine.Stone;
+                    check++;
+                }
+            }
+
+            return answer;
+        }
+    }
+
+    public struct Mine : IComparable<Mine>
+    {
+        public int Value;
+        public int Dia;
+        public int Iron;
+        public int Stone;
+
+        public int CompareTo(Mine other)
+        {
+            if (Value < other.Value)
+                return -1;
+            else
+                return +1;
+        }
+    }
+}
+
 // 멀쩡한 사각형, https://school.programmers.co.kr/learn/courses/30/lessons/62048
 namespace CodingTest.ActivationSquare
 {
