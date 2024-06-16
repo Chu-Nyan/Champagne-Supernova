@@ -2,6 +2,94 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 디펜스 게임, https://school.programmers.co.kr/learn/courses/30/lessons/142085
+namespace CodingTest.DefenceGame
+{
+    public class Solution
+    {
+        public int solution(int n, int k, int[] enemy)
+        {
+            int wave = 0;
+            Queueue clear = new Queueue();
+            while (n >= 0 && wave < enemy.Length)
+            {
+                n -= enemy[wave];
+                clear.Enqueue(enemy[wave]);
+                if (n < 0 && k != 0 && clear.Count > 0)
+                {
+                    while (n < 0 && k > 0)
+                    {
+                        n += clear.Dequeue();
+                        k--;
+                    }
+                }
+
+                if (n >= 0)
+                    wave++;
+            }
+
+            return wave;
+        }
+    }
+
+    public class Queueue
+    {
+        private List<int> _values = new List<int>() { int.MinValue };
+        public int Count = 0;
+
+        public void Enqueue(int value)
+        {
+            Count++;
+            _values.Add(value);
+            int index = Count;
+
+            while (index > 1)
+            {
+                int parent = index >> 1;
+                if (_values[parent] > value)
+                    break;
+
+                SwapArray(index, parent);
+                index = parent;
+            }
+        }
+
+        public int Dequeue()
+        {
+            int dequeue = _values[1];
+            _values[1] = _values[Count];
+            _values.RemoveAt(Count);
+            Count--;
+
+            int index = 1;
+            while (Count > 0)
+            {
+                int leftChild = index << 1;
+                int rightChild = leftChild + 1;
+                int next = index;
+
+                if (leftChild <= Count && _values[leftChild] > _values[next])
+                    next = leftChild;
+                if (rightChild <= Count && _values[rightChild] > _values[next])
+                    next = rightChild;
+                if (next == index)
+                    break;
+
+                SwapArray(index, next);
+                index = next;
+            }
+
+            return dequeue;
+        }
+
+        public void SwapArray(int index1, int index2)
+        {
+            int temp = _values[index1];
+            _values[index1] = _values[index2];
+            _values[index2] = temp;
+        }
+    }
+}
 
 // 광물 캐기, https://school.programmers.co.kr/learn/courses/30/lessons/172927
 namespace CodingTest.Mining
