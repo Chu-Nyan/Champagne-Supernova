@@ -2,6 +2,41 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 하노이의 탑, https://school.programmers.co.kr/learn/courses/30/lessons/12946\
+namespace CodingTest.TowerOfHanoi
+{
+    public class Solution
+    {
+        private int _index;
+
+        public int[,] solution(int n)
+        {
+            _index = 0;
+            int[,] answer = new int[((int)Math.Pow(2, n) - 1), 2];
+            Hanoi(n, 1, 3, 2, answer);
+            return answer;
+        }
+
+        private void Hanoi(int n, int start, int end, int mid, int[,] answer)
+        {
+            if (n == 1)
+            {
+                answer[_index, 0] = start;
+                answer[_index, 1] = end;
+                _index++;
+            }
+            else
+            {
+                Hanoi(n - 1, start, mid, end, answer);
+                answer[_index, 0] = start;
+                answer[_index, 1] = end;
+                _index++;
+                Hanoi(n - 1, mid, end, start, answer);
+            }
+        }
+    } 
+}
+
 // 디펜스 게임, https://school.programmers.co.kr/learn/courses/30/lessons/142085
 namespace CodingTest.DefenceGame
 {
