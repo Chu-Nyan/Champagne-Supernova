@@ -2,6 +2,64 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 1단계 입출력과 사칙연산, https://www.acmicpc.net/step/1
+namespace CodingTest.Baekjoon.Level1
+{
+    public class Arithmetic
+    {
+        public void HelloWorld()
+        {
+            Console.WriteLine("Hello World!");
+        }
+
+        public void APlusB()
+        {
+            string input = Console.ReadLine();
+            int numberA = int.Parse(input.Substring(0, 1));
+            int numberB = int.Parse(input.Substring(2, 1));
+            Console.WriteLine(numberA + numberB);
+        }
+
+        public void AMinusB()
+        {
+            string input = Console.ReadLine();
+            int numberA = int.Parse(input.Substring(0, 1));
+            int numberB = int.Parse(input.Substring(2, 1));
+            Console.WriteLine(numberA - numberB);
+        }
+
+        public void AMultiplyB()
+        {
+            string input = Console.ReadLine();
+            int numberA = int.Parse(input.Substring(0, 1));
+            int numberB = int.Parse(input.Substring(2, 1));
+            Console.WriteLine(numberA * numberB);
+        }
+
+        public void ADivideB()
+        {
+            string input = Console.ReadLine();
+            double numberA = double.Parse(input.Substring(0, 1));
+            double numberB = double.Parse(input.Substring(2, 1));
+            Console.WriteLine(numberA / numberB);
+        }
+
+        public void AllArithmetic()
+        {
+            string input = Console.ReadLine();
+            int spaceIndex = input.IndexOf(' ');
+            int numberA = int.Parse(input.Substring(0, spaceIndex));
+            int numberB = int.Parse(input.Substring(spaceIndex + 1, input.Length - spaceIndex - 1));
+
+            Console.WriteLine(numberA + numberB);
+            Console.WriteLine(numberA - numberB);
+            Console.WriteLine(numberA * numberB);
+            Console.WriteLine(numberA / numberB);
+            Console.WriteLine(numberA % numberB);
+        }
+    }
+}
+
 // 하노이의 탑, https://school.programmers.co.kr/learn/courses/30/lessons/12946\
 namespace CodingTest.TowerOfHanoi
 {
@@ -34,7 +92,7 @@ namespace CodingTest.TowerOfHanoi
                 Hanoi(n - 1, mid, end, start, answer);
             }
         }
-    } 
+    }
 }
 
 // 디펜스 게임, https://school.programmers.co.kr/learn/courses/30/lessons/142085
