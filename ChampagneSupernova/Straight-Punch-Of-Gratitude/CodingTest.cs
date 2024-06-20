@@ -58,6 +58,108 @@ namespace CodingTest.Baekjoon.Level1
             Console.WriteLine(numberA % numberB);
         }
     }
+
+    public class Day240620
+    {
+        public static void Problem10869()
+        {
+            string inputID = Console.ReadLine();
+            string dup = "??!";
+            Console.WriteLine($"{inputID}{dup}");
+        }
+
+        public static void Problem18108()
+        {
+            int BC = int.Parse(Console.ReadLine());
+            int ADGap = 543;
+            Console.WriteLine(BC - ADGap);
+        }
+
+        public static void Problem10430()
+        {
+            string input = Console.ReadLine();
+            int[] numbers = new int[3];
+            int findIndex = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                int endIndex = input.IndexOf(' ', findIndex);
+                if (endIndex != -1)
+                {
+                    int number = int.Parse(input.Substring(findIndex, endIndex - findIndex));
+                    findIndex = endIndex + 1;
+                    numbers[i] = number;
+                }
+                else
+                {
+                    int number = int.Parse(input.Substring(findIndex, input.Length - findIndex));
+                    numbers[i] = number;
+                    break;
+                }
+            }
+
+            Console.WriteLine((numbers[0] + numbers[1]) % numbers[2]);
+            Console.WriteLine(((numbers[0] % numbers[2]) + (numbers[1] % numbers[2])) % numbers[2]);
+            Console.WriteLine((numbers[0] * numbers[1]) % numbers[2]);
+            Console.WriteLine(((numbers[0] % numbers[2]) * (numbers[1] % numbers[2])) % numbers[2]);
+        }
+
+        public static void Problem2588()
+        {
+            int numberA = int.Parse(Console.ReadLine());
+            int numberB = int.Parse(Console.ReadLine());
+
+            int placeValue = 1;
+            for (int i = 0; i < 3; i++)
+            {
+                int number = (numberB / placeValue) % 10;
+                Console.WriteLine(numberA * number);
+                placeValue *= 10;
+            }
+            Console.WriteLine(numberA * numberB);
+        }
+
+        public static void Problem11382()
+        {
+            string input = Console.ReadLine();
+            long answer = 0;
+            int findIndex = 0;
+            while (true)
+            {
+                int endIndex = input.IndexOf(' ', findIndex);
+                if (endIndex != -1)
+                {
+                    long number = long.Parse(input.Substring(findIndex, endIndex - findIndex));
+                    findIndex = endIndex + 1;
+                    answer += number;
+                }
+                else
+                {
+                    long number = long.Parse(input.Substring(findIndex, input.Length - findIndex));
+                    answer += number;
+                    break;
+                }
+            }
+
+            Console.WriteLine(answer);
+        }
+
+        public static void Problem10171()
+        {
+            Console.WriteLine("\\    /\\");
+            Console.WriteLine(" )  ( ')");
+            Console.WriteLine("(  /  )");
+            Console.WriteLine(" \\(__)|");
+        }
+
+        public static void Problem10172()
+        {
+            Console.WriteLine("|\\_/|");
+            Console.WriteLine("|q p|   /}");
+            Console.WriteLine("( 0 )\"\"\"\\");
+            Console.WriteLine("|\"^\"`    |");
+            Console.WriteLine("||_/=\\\\__|");
+        }
+    }
 }
 
 // 하노이의 탑, https://school.programmers.co.kr/learn/courses/30/lessons/12946\
