@@ -5,14 +5,14 @@ using System.Text;
 // 백준 1단계 입출력과 사칙연산, https://www.acmicpc.net/step/1
 namespace CodingTest.Baekjoon.Level1
 {
-    public class Arithmetic
+    public class Day240619
     {
-        public void HelloWorld()
+        public static void Problem2557()
         {
             Console.WriteLine("Hello World!");
         }
 
-        public void APlusB()
+        public static void Problem1000()
         {
             string input = Console.ReadLine();
             int numberA = int.Parse(input.Substring(0, 1));
@@ -20,7 +20,7 @@ namespace CodingTest.Baekjoon.Level1
             Console.WriteLine(numberA + numberB);
         }
 
-        public void AMinusB()
+        public static void Problem1001()
         {
             string input = Console.ReadLine();
             int numberA = int.Parse(input.Substring(0, 1));
@@ -28,7 +28,7 @@ namespace CodingTest.Baekjoon.Level1
             Console.WriteLine(numberA - numberB);
         }
 
-        public void AMultiplyB()
+        public static void Problem10998()
         {
             string input = Console.ReadLine();
             int numberA = int.Parse(input.Substring(0, 1));
@@ -36,7 +36,7 @@ namespace CodingTest.Baekjoon.Level1
             Console.WriteLine(numberA * numberB);
         }
 
-        public void ADivideB()
+        public static void Problem1008()
         {
             string input = Console.ReadLine();
             double numberA = double.Parse(input.Substring(0, 1));
@@ -44,7 +44,7 @@ namespace CodingTest.Baekjoon.Level1
             Console.WriteLine(numberA / numberB);
         }
 
-        public void AllArithmetic()
+        public static void Problem10869()
         {
             string input = Console.ReadLine();
             int spaceIndex = input.IndexOf(' ');
