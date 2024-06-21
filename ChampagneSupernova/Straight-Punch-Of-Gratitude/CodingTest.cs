@@ -2,6 +2,84 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 2단계 조건문, https://www.acmicpc.net/step/4
+namespace CodingTest.Baekjoon.Level2
+{
+    public class Day240621
+    {
+        public static void Problem14681()
+        {
+            int x = int.Parse(Console.ReadLine());
+            int y = int.Parse(Console.ReadLine());
+
+            int result;
+            if (x > 0)
+                result = y > 0 ? 1 : 4;
+            else
+                result = y > 0 ? 2 : 3;
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem1330()
+        {
+            string[] input = Console.ReadLine().Split(' ');
+            int a = int.Parse(input[0]);
+            int b = int.Parse(input[1]);
+
+            string compare;
+            if (a > b)
+                compare = ">";
+            else if (a < b)
+                compare = "<";
+            else
+                compare = "==";
+
+            Console.WriteLine(compare);
+        }
+
+        public static void Problem9498()
+        {
+            int input = int.Parse(Console.ReadLine());
+
+            string grade;
+            switch (input)
+            {
+                case >= 90:
+                    grade = "A";
+                    break;
+                case >= 80:
+                    grade = "B";
+                    break;
+                case >= 70:
+                    grade = "C";
+                    break;
+                case >= 60:
+                    grade = "D";
+                    break;
+                default:
+                    grade = "F";
+                    break;
+            }
+
+            Console.WriteLine(grade);
+        }
+
+        public static void Problem2753()
+        {
+            int input = int.Parse(Console.ReadLine());
+
+            string result;
+            if (input % 4 == 0 && (input % 100 != 0 || input % 400 == 0))
+                result = "1";
+            else
+                result = "0";
+
+            Console.WriteLine(result);
+        }
+    }
+}
+
 // 백준 1단계 입출력과 사칙연산, https://www.acmicpc.net/step/1
 namespace CodingTest.Baekjoon.Level1
 {
