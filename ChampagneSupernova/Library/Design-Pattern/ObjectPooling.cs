@@ -3,30 +3,32 @@ using System.Collections.Generic;
 
 namespace Library.DesignPattern
 {
-    public class ObjectPooling<T> where T : class, IPoolable
+    public class ObjectPooling<T> where T : class
     {
         private readonly Queue<T> _queue;
-        private readonly Func<T> _onNewGenerated;
+        private readonly Func<T> _generateDelegate;
+        private readonly Action<T> _resetDelegate;
 
-        public ObjectPooling(Func<T> generate)
+        public ObjectPooling(Func<T> generate, Action<T> reset)
         {
             _queue = new Queue<T>();
-            _onNewGenerated = generate;
+            _generateDelegate = generate;
+            _resetDelegate = reset;
         }
 
-        public T GetNew()
+        public T Dequeue()
         {
-            if (_queue.TryDequeue(out var item) == false)
-                item = _onNewGenerated();
+            if (_queue.TryDequeue(out var item) == true)
+                _resetDelegate?.Invoke(item);
             else
-                item.Init();
+                item = _generateDelegate?.Invoke();
 
             return item;
         }
-    }
 
-    public interface IPoolable 
-    {
-        public void Init();
+        public void Enqueue(T item)
+        {
+            _queue.Enqueue(item);
+        }
     }
 }
