@@ -5,6 +5,65 @@ using System.Text;
 // 백준 2단계 조건문, https://www.acmicpc.net/step/4
 namespace CodingTest.Baekjoon.Level2
 {
+    public class Day240624
+    {
+        public static void Problem2480()
+        {
+            string[] time = Console.ReadLine().Split(' ');
+            int one = int.Parse(time[0]);
+            int two = int.Parse(time[1]);
+            int three = int.Parse(time[2]);
+            int reward;
+
+            if (one == two && one == three)
+                reward = 10000 + (one * 1000);
+            else if (one == two || one == three)
+                reward = 1000 + (one * 100);
+            else if (two == three)
+                reward = 1000 + (two * 100);
+            else
+            {
+                int max = Math.Max(one, two);
+                max = Math.Max(max, three);
+
+                reward = max * 100;
+            }
+
+            Console.WriteLine(reward);
+        }
+
+        public static void Problem2525()
+        {
+            string[] time = Console.ReadLine().Split(' ');
+            int timer = int.Parse(Console.ReadLine());
+            int hour = int.Parse(time[0]);
+            int min = int.Parse(time[1]);
+
+            int totar = (hour * 60 + min + timer) % 1440;
+            Console.WriteLine($"{totar / 60} {totar % 60}");
+        }
+
+        public static void Problem2884()
+        {
+            string[] time = Console.ReadLine().Split(' ');
+            int hour = int.Parse(time[0]);
+            int min = int.Parse(time[1]);
+
+            min -= 45;
+            if (min < 0)
+            {
+                min = 60 + min;
+                hour--;
+                if (hour < 0)
+                {
+                    hour = 24 + hour;
+                }
+            }
+
+            Console.WriteLine($"{hour} {min}");
+        }
+    }
+
     public class Day240621
     {
         public static void Problem14681()
