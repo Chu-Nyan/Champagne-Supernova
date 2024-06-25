@@ -2,6 +2,106 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 3단계 반복문, https://www.acmicpc.net/step/3
+namespace CodingTest.Baekjoon.Level3
+{
+    public class Day240625
+    {
+        public static void Problem1552()
+        {
+            int index = int.Parse(Console.ReadLine());
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < index; i++)
+            {
+                sb.Append($"{Console.ReadLine()} ");
+            }
+            string[] strings = sb.ToString().Split(' ');
+            sb.Clear();
+
+            for (int i = 0; i < index; i++)
+            {
+                int a = int.Parse(strings[i * 2]);
+                int b = int.Parse(strings[i * 2 + 1]);
+                sb.AppendLine($"{a + b}");
+            }
+
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem25314()
+        {
+            int index = int.Parse(Console.ReadLine()) / 4;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < index; i++)
+            {
+                sb.Append("long ");
+            }
+            sb.Append("int");
+
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem25304()
+        {
+            int payment = int.Parse(Console.ReadLine());
+            int kind = int.Parse(Console.ReadLine());
+            int[] receipts = new int[2];
+            int sum = 0;
+
+            for (int i = 0; i < kind; i++)
+            {
+                var strings = Console.ReadLine().Split(' ');
+                receipts[0] = int.Parse(strings[0]);
+                receipts[1] = int.Parse(strings[1]);
+
+                sum += receipts[0] * receipts[1];
+            }
+
+            if (payment == sum)
+                Console.WriteLine("Yes");
+            else
+                Console.WriteLine("No");
+        }
+
+        public static void Problem8393()
+        {
+            int index = int.Parse(Console.ReadLine());
+            int sum = 0;
+
+            for (int i = 1; i <= index; i++)
+            {
+                sum += i;
+            }
+
+            Console.WriteLine(sum);
+        }
+
+        public static void Problem10950()
+        {
+            int[] ints = new int[2];
+            int index = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < index; i++)
+            {
+                string[] strings = Console.ReadLine().Split(' ');
+                ints[0] = int.Parse(strings[0]);
+                ints[1] = int.Parse(strings[1]);
+
+                Console.WriteLine(ints[0] + ints[1]);
+            }
+        }
+
+        public static void Problem2739()
+        {
+            int a = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i < 10; i++)
+            {
+                Console.WriteLine($"{a} * {i} = {a * i}");
+            }
+        }
+    }
+}
 // 백준 2단계 조건문, https://www.acmicpc.net/step/4
 namespace CodingTest.Baekjoon.Level2
 {
