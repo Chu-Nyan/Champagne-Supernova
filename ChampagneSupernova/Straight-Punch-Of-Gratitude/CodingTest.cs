@@ -5,6 +5,98 @@ using System.Text;
 // 백준 3단계 반복문, https://www.acmicpc.net/step/3
 namespace CodingTest.Baekjoon.Level3
 {
+    public class Day240626
+    {
+        public static void Problem10951()
+        {
+            int[] ints = new int[2];
+
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (input == "" || input == default)
+                    break;
+
+                string[] strings = input.Split(' ');
+                ints[0] = int.Parse(strings[0]);
+                ints[1] = int.Parse(strings[1]);
+
+                Console.WriteLine(ints[0] + ints[1]);
+            }
+        }
+
+        public static void Problem10952()
+        {
+            int[] ints = new int[2];
+
+            while (true)
+            {
+                string[] strings = Console.ReadLine().Split(' ');
+                if (strings[0] == "0" && strings[1] == "0")
+                    break;
+
+                ints[0] = int.Parse(strings[0]);
+                ints[1] = int.Parse(strings[1]);
+
+                Console.WriteLine($"{ints[0] + ints[1]}");
+            }
+        }
+
+        public static void Problem2439()
+        {
+            int index = int.Parse(Console.ReadLine());
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < index; i++)
+            {
+                sb.Append('*');
+                Console.WriteLine(sb.ToString().PadLeft(index));
+            }
+        }
+
+        public static void Problem2438()
+        {
+            int index = int.Parse(Console.ReadLine());
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < index; i++)
+            {
+                sb.Append('*');
+                Console.WriteLine(sb);
+            }
+        }
+
+        public static void Problem11022()
+        {
+            int[] ints = new int[2];
+            int index = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < index; i++)
+            {
+                string[] strings = Console.ReadLine().Split(' ');
+                ints[0] = int.Parse(strings[0]);
+                ints[1] = int.Parse(strings[1]);
+
+                Console.WriteLine($"Case #{i + 1}: {ints[0]} + {ints[1]} = {ints[0] + ints[1]}");
+            }
+        }
+
+        public static void Problem11021()
+        {
+            int[] ints = new int[2];
+            int index = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < index; i++)
+            {
+                string[] strings = Console.ReadLine().Split(' ');
+                ints[0] = int.Parse(strings[0]);
+                ints[1] = int.Parse(strings[1]);
+
+                Console.WriteLine($"Case #{i + 1}: {ints[0] + ints[1]}");
+            }
+        }
+    }
+
     public class Day240625
     {
         public static void Problem1552()
