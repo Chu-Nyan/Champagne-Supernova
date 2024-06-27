@@ -2,6 +2,115 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 4단계 1차원 배열,
+namespace CodingTest.Baekjoon.Level4
+{
+    public class Day240627
+    {
+        public static void Problem10810()
+        {
+            string[] stringArr = Console.ReadLine().Split(' ');
+            string[] basket = new string[int.Parse(stringArr[0])];
+            int tryIndex = int.Parse(stringArr[1]);
+
+            for (int i = 0; i < tryIndex; i++)
+            {
+                string[] infoArr = Console.ReadLine().Split(' ');
+                int startIndex = int.Parse(infoArr[0]) - 1;
+                int endIndex = int.Parse(infoArr[1]) - 1;
+
+                for (int j = startIndex; j <= endIndex; j++)
+                {
+                    basket[j] = infoArr[2];
+                }
+            }
+
+            for (int i = 0; i < basket.Length; i++)
+            {
+                Console.Write($"{basket[i] ?? "0"} ");
+            }
+        }
+
+        public static void Problem2562()
+        {
+            int maxIndex = 0;
+            int maxValue = int.MinValue;
+
+            for (int i = 0; i < 9; i++)
+            {
+                int value = int.Parse(Console.ReadLine());
+                if (maxValue < value)
+                {
+                    maxIndex = i;
+                    maxValue = value;
+                }
+            }
+
+            Console.WriteLine(maxValue);
+            Console.WriteLine(maxIndex + 1);
+        }
+
+        public static void Problem10818()
+        {
+            int index = int.Parse(Console.ReadLine());
+            string[] stringArr = Console.ReadLine().Split(' ');
+            int min = int.MaxValue;
+            int max = int.MinValue;
+
+            foreach (var item in stringArr)
+            {
+                int num = int.Parse(item);
+
+                if (min > num)
+                    min = num;
+
+                if (max < num)
+                    max = num;
+            }
+
+            Console.WriteLine($"{min} {max}");
+        }
+
+        public static void Problem10871()
+        {
+            string[] infos = Console.ReadLine().Split(' ');
+            string[] stringArr = Console.ReadLine().Split(' ');
+
+            int index = int.Parse(infos[0]);
+            int target = int.Parse(infos[1]);
+            StringBuilder result = new StringBuilder();
+
+            for (int i = 0; i < index; i++)
+            {
+                if (target <= int.Parse(stringArr[i]))
+                    continue;
+
+                result.Append($"{stringArr[i]} ");
+            }
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem10807()
+        {
+            int index = int.Parse(Console.ReadLine());
+            string[] stringArr = Console.ReadLine().Split(' ');
+            string target = Console.ReadLine();
+            int result = 0;
+
+            for (int i = 0; i < index; i++)
+            {
+                if (stringArr[i] != target)
+                    continue;
+
+                result++;
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+}
+
 // 백준 3단계 반복문, https://www.acmicpc.net/step/3
 namespace CodingTest.Baekjoon.Level3
 {
@@ -194,6 +303,7 @@ namespace CodingTest.Baekjoon.Level3
         }
     }
 }
+
 // 백준 2단계 조건문, https://www.acmicpc.net/step/4
 namespace CodingTest.Baekjoon.Level2
 {
