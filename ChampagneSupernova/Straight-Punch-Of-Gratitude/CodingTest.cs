@@ -5,6 +5,127 @@ using System.Text;
 // 백준 4단계 1차원 배열,
 namespace CodingTest.Baekjoon.Level4
 {
+    public class Day240628
+    {
+        public static void Problem1546()
+        {
+            int count = int.Parse(Console.ReadLine());
+            string[] scores = Console.ReadLine().Split(' ');
+            float sum = 0;
+            int max = int.MinValue;
+
+            for (int i = 0; i < count; i++)
+            {
+                int score = int.Parse(scores[i]);
+                sum += score;
+                max = Math.Max(max, score);
+            }
+            sum = sum / max * 100;
+
+            Console.WriteLine((float)sum / count);
+        }
+
+        public static void Problem10811()
+        {
+            string[] settingInfos = Console.ReadLine().Split(' ');
+            int count = int.Parse(settingInfos[1]);
+            string[] array = new string[int.Parse(settingInfos[0])];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = $"{i + 1}";
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                string[] swaps = Console.ReadLine().Split(' ');
+                int a = int.Parse(swaps[0]) - 1;
+                int b = int.Parse(swaps[1]) - 1;
+                Reverse(a, b);
+            }
+
+            foreach (string s in array)
+            {
+                Console.Write($"{s} ");
+            }
+
+            void Reverse(int start, int end)
+            {
+                while (start <= end)
+                {
+                    var temp = array[start];
+                    array[start] = array[end];
+                    array[end] = temp;
+
+                    start++;
+                    end--;
+                }
+            }
+        }
+
+        public static void Problem3052()
+        {
+            HashSet<int> array = new HashSet<int>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                array.Add(int.Parse(Console.ReadLine()) % 42);
+            }
+
+            Console.WriteLine(array.Count);
+        }
+
+        public static void Problem5597()
+        {
+            HashSet<int> array = new HashSet<int>(28);
+            int find = 0;
+
+            for (int i = 0; i < 28; i++)
+            {
+                array.Add(int.Parse(Console.ReadLine()));
+            }
+
+            for (int i = 1; i <= 30; i++)
+            {
+                if (array.Contains(i) == true)
+                    continue;
+
+                Console.WriteLine(i);
+                find++;
+                if (find >= 2)
+                    break;
+            }
+        }
+
+        public static void Problem10813()
+        {
+            string[] settingInfos = Console.ReadLine().Split(' ');
+            string[] array = new string[int.Parse(settingInfos[0])];
+            int count = int.Parse(settingInfos[1]);
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = $"{i + 1}";
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                string[] swaps = Console.ReadLine().Split(' ');
+                int a = int.Parse(swaps[0]) - 1;
+                int b = int.Parse(swaps[1]) - 1;
+
+                var temp = array[a];
+                array[a] = array[b];
+                array[b] = temp;
+            }
+
+            foreach (string s in array)
+            {
+                Console.Write($"{s} ");
+            }
+        }
+    }
+
     public class Day240627
     {
         public static void Problem10810()
