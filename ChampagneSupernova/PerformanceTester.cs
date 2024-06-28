@@ -1,11 +1,14 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 
 namespace ChampagneSupernova
 {
     public static class PerformanceTester
     {
+        private const string LogName = "PerformanceLog";
         private const int DefaultLoop = 10000;
-        private const int AvgLoop = 100;
+        private const int AvgLoop = 1000;
 
         public static void Start(Action method, int loop = DefaultLoop)
         {
@@ -20,7 +23,9 @@ namespace ChampagneSupernova
             TimeSpan span = new(allTick / AvgLoop);
             long avgMs = span.Microseconds;
 
-            Console.WriteLine($"Count : {loop} | Avg : {avgMs}ms");
+            string log = $"{method.GetMethodInfo().Name} | Count : {loop} | Avg : {avgMs}ms";
+            SaveLog(method.GetMethodInfo().Name, log);
+            Console.WriteLine(log);
         }
 
         private static long Test(Action method, int loop)
@@ -33,6 +38,18 @@ namespace ChampagneSupernova
             long endTick = DateTime.UtcNow.Ticks;
 
             return endTick - startTick;
+        }
+
+        private static void SaveLog(string name, string text)
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string fileName = $"{LogName}.txt";
+            string filePath = Path.Combine(currentDirectory, fileName);
+            StreamWriter sw = new StreamWriter(filePath, true, System.Text.Encoding.UTF8);
+            sw.WriteLine(name);
+            sw.WriteLine(text);
+            sw.WriteLine();
+            sw.Close();
         }
     }
 }
