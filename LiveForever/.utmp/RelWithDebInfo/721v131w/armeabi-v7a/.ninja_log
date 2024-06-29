@@ -1,0 +1,11 @@
+# ninja log v5
+43	219	7413851664838301	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	7955ae2633f50467
+220	413	7413851666290992	D:/ChuNyan/Programming/Champagne-Supernova/LiveForever/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/721v131w/obj/armeabi-v7a/libswappywrapper.so	7b662bd6e2df2fa5
+11	974	7413851672315108	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	d4f75d6dfc571214
+17	1003	7413851672637921	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	2312fab2e0c93f84
+23	1072	7413851673337436	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	b7f93de7c9fdb5c
+36	1170	7413851674320641	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e87e8cc73d4ecb43
+6	1220	7413851674834166	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2ad61034e5696acb
+29	1391	7413851676499451	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d85fca6af32b1783
+0	1493	7413851677507730	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	a92de928d1b8a96f
+1494	1640	7413851678631983	D:/ChuNyan/Programming/Champagne-Supernova/LiveForever/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/721v131w/obj/armeabi-v7a/libgame.so	508491ebfe0215ab

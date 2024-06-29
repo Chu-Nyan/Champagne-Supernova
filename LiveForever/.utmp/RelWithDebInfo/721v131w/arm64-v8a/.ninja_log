@@ -1,0 +1,21 @@
+# ninja log v5
+47	203	7413850592255476	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	eeb8a38be4ec88aa
+16	1413	7413850604294768	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	b0669e6c9cce0f44
+203	379	7413850593408339	D:/ChuNyan/Programming/Champagne-Supernova/LiveForever/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/721v131w/obj/arm64-v8a/libswappywrapper.so	5cb2f612b3b8117e
+40	982	7413850599957931	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9b6357dcd014c2d
+11	914	7413850599260715	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c10b054cd7c97da1
+22	1121	7413850601397539	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	f5d3b0d1d579f150
+34	997	7413850600135758	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f147daaba10ba3ab
+28	1093	7413850601094346	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e506a7c7b0058384
+4	1303	7413850603175853	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	ee6c5282ac3b15e7
+1414	1564	7413850605375486	D:/ChuNyan/Programming/Champagne-Supernova/LiveForever/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/721v131w/obj/arm64-v8a/libgame.so	dc7122e2d9061d76
+27	169	7413851622284328	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	eeb8a38be4ec88aa
+169	355	7413851623646198	D:/ChuNyan/Programming/Champagne-Supernova/LiveForever/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/721v131w/obj/arm64-v8a/libswappywrapper.so	5cb2f612b3b8117e
+21	992	7413851630463145	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c10b054cd7c97da1
+32	1006	7413851630614418	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9b6357dcd014c2d
+39	1037	7413851630937767	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f147daaba10ba3ab
+45	1133	7413851631843107	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e506a7c7b0058384
+10	1163	7413851632196910	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	f5d3b0d1d579f150
+15	1315	7413851633699577	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	ee6c5282ac3b15e7
+4	1462	7413851635190867	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	b0669e6c9cce0f44
+1462	1622	7413851636333578	D:/ChuNyan/Programming/Champagne-Supernova/LiveForever/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/721v131w/obj/arm64-v8a/libgame.so	dc7122e2d9061d76
