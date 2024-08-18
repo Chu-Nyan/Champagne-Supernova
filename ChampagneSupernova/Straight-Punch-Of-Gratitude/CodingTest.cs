@@ -2,6 +2,84 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 5단계 문자열,
+namespace CodingTest.Baekjoon.Level5
+{
+    public static class Day240818
+    {
+        public static void Problem27866()
+        {
+            var text = Console.ReadLine();
+            var number = int.Parse(Console.ReadLine());
+            Console.WriteLine(text[number - 1]);
+        }
+
+        public static void Problem2743()
+        {
+            var text = Console.ReadLine();
+            Console.WriteLine(text.Length);
+        }
+
+        public static void Problem9086()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var texts = new List<string>();
+            for (int i = 0; i < count; i++)
+            {
+                texts.Add(Console.ReadLine());
+            }
+            foreach (var item in texts)
+            {
+                Console.WriteLine($"{item[0]}{item[item.Length - 1]}");
+            }
+        }
+
+        public static void Problem11654()
+        {
+            var text = Console.ReadLine();
+            Console.WriteLine((int)text[0]);
+        }
+
+        public static void Problem11720()
+        {
+            Console.ReadLine();
+            var text = Console.ReadLine();
+            int sum = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                sum += int.Parse(text[i].ToString());
+            }
+            Console.WriteLine(sum);
+        }
+
+        public static void Problem10809()
+        {
+            var text = Console.ReadLine();
+            var ascllA = 97;
+            var answer = new int[26];
+            for (int i = 0; i < answer.Length; i++)
+            {
+                answer[i] = -1;
+            }
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                var code = text[i] - ascllA;
+                if (answer[code] == -1)
+                {
+                    answer[code] = i;
+                }
+            }
+            var sb = new StringBuilder();
+            for (int i = 0; i < answer.Length; i++)
+            {
+                sb.Append(answer[i] + " ");
+            }
+            Console.WriteLine(sb);
+        }
+    }
+}
+
 // 백준 4단계 1차원 배열,
 namespace CodingTest.Baekjoon.Level4
 {
