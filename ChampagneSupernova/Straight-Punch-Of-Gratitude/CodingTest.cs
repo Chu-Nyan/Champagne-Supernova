@@ -5,6 +5,86 @@ using System.Text;
 // 백준 5단계 문자열,
 namespace CodingTest.Baekjoon.Level5
 {
+    public static class Day240819
+    {
+        public static void Problem11718()
+        {
+            while (true)
+            {
+                var text = Console.ReadLine();
+                if (string.IsNullOrEmpty(text))
+                    break;
+                Console.WriteLine(text);
+            }
+        }
+
+        public static void Problem5622()
+        {
+            var dic = new Dictionary<char, int>()
+            {
+                {'A', 2 },{'B', 2 },{'C', 2 },
+                {'D', 3 },{'E', 3 },{'F', 3 },
+                {'G', 4 },{'H', 4 },{'I', 4 },
+                {'J', 5 },{'K', 5 },{'L', 5 },
+                {'M', 6 },{'N', 6 },{'O', 6 },
+                {'P', 7 },{'Q', 7 },{'R', 7 },{'S',7},
+                {'T', 8 },{'U', 8 },{'V', 8 },
+                {'W', 9 },{'X', 9 },{'Y', 9 },{'Z',9},
+            };
+
+            var input = Console.ReadLine();
+            int result = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                result += dic[input[i]] + 1;
+            }
+            Console.WriteLine(result);
+        }
+
+        public static void Problem1152()
+        {
+            var input = Console.ReadLine().Split(' ');
+            var count = input.Length;
+            if (input[0] == "")
+                count--;
+            if (input[input.Length - 1] == "")
+                count--;
+            Console.WriteLine(count);
+        }
+
+        public static void Problem2675()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var sb = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                var input = Console.ReadLine().Split(' ');
+                var loopCount = int.Parse(input[0]);
+                var text = input[1];
+                sb.Clear();
+                for (int j = 0; j < text.Length; j++)
+                {
+                    sb.Append(new string(text[j], loopCount));
+                }
+                Console.WriteLine(sb);
+            }
+        }
+
+        public static void Problem2908()
+        {
+            var texts = Console.ReadLine().Split(" ");
+            var nums = new int[2];
+            for (int i = 0; i < 2; i++)
+            {
+                var text = texts[i];
+                nums[i] = int.Parse($"{text[2]}{text[1]}{text[0]}");
+            }
+
+            var max = nums[0] > nums[1] ? nums[0] : nums[1];
+            Console.WriteLine(max);
+        }
+    }
+
     public static class Day240818
     {
         public static void Problem27866()
