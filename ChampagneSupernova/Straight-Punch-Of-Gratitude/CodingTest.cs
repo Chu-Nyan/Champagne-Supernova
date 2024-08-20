@@ -2,6 +2,100 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 6단계 심화 1,
+namespace CodingTest.Baekjoon.Level6
+{
+    public static class Day240820
+    {
+        public static void Problem10998()
+        {
+            var text = Console.ReadLine();
+            var count = text.Length * 0.5f;
+            var result = 1;
+            for (int i = 0; i < count; i++)
+            {
+                if (text[i] != text[text.Length - i - 1] )
+                {
+                    result = 0;
+                    break;
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem2444()
+        {
+            var num = int.Parse(Console.ReadLine());
+            var count = 2 * num - 1;
+            var texts = new string[count];
+            var sb = new StringBuilder();
+            for (int i = 0; i < num; i++)
+            {
+                sb.Clear();
+                int left = num - i - 1;
+                int right = num + i - 1;
+                for (int j = 0; j < count; j++)
+                {
+                    if (left <= j && j <= right) 
+                        sb.Append('*');
+                    else if(left > j)
+                        sb.Append(' ');
+                    else
+                        break;
+                }
+                texts[i] = sb.ToString();
+            }
+            for (int i = num - 1; i >= 0; i--)
+            {
+                sb.Clear();
+                int left = num - i - 1;
+                int right = num + i - 1 ;
+                for (int j = 0; j < count; j++)
+                {
+                    if (left <= j && j <= right)
+                        sb.Append('*');
+                    else if (left > j)
+                        sb.Append(' ');
+                    else
+                        break;
+                }
+                texts[count - i - 1] = sb.ToString();
+            }
+
+            for (int i = 0; i < texts.Length; i++)
+            {
+                Console.Write(texts[i]);
+                if (i != texts.Length -1)
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        public static void Problem3003()
+        {
+            var defaultItem = new int[] { 1, 1, 2, 2, 2, 8 };
+            var text = Console.ReadLine().Split(' ');
+            string result = default;
+            for (int i = 0; i < text.Length; i++)
+            {
+                result += (defaultItem[i] - int.Parse(text[i])).ToString() + " ";
+            }
+            Console.WriteLine(result);
+        }
+
+        public static void Problem52()
+        {
+            Console.WriteLine("         ,r'\"7");
+            Console.WriteLine("r`-_   ,'  ,/");
+            Console.WriteLine(" \\. \". L_r'");
+            Console.WriteLine("   `~\\/");
+            Console.WriteLine("      |");
+            Console.WriteLine("      |");
+        }
+    }
+}
 // 백준 5단계 문자열,
 namespace CodingTest.Baekjoon.Level5
 {
