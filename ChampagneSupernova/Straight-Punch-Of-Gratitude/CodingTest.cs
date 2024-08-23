@@ -5,6 +5,103 @@ using System.Text;
 // 백준 6단계 심화 1,
 namespace CodingTest.Baekjoon.Level6
 {
+    public static class Day240823
+    {
+        public static void Problem25206()
+        {
+            var grades = new Dictionary<string, float>
+            {
+                { "A+", 4.5f }, { "A0", 4.0f }, { "B+", 3.5f }, { "B0", 3.0f },
+                { "C+", 2.5f }, { "C0", 2.0f }, { "D+", 1.5f }, { "D0", 1.0f }, { "F", 0.0f }
+            };
+
+            var scoreScale = 0f;
+            var onlyScore = 0f;
+
+            for (int i = 0; i < 20; i++)
+            {
+                var text = Console.ReadLine().Split(' ');
+                if (text[2] != "P")
+                {
+                    var score = float.Parse(text[1]);
+                    onlyScore += score;
+                    scoreScale += score * grades[text[2]];
+                }
+            }
+
+            Console.WriteLine(scoreScale / onlyScore);
+        }
+
+        public static void Problem1316()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var checkList = new HashSet<char>();
+            var result = 0;
+            for (int i = 0; i < count; i++)
+            {
+                checkList.Clear();
+                var text = Console.ReadLine();
+                var isLoopText = true;
+                for (int j = 0; j < text.Length; j++)
+                {
+                    var isChecked = checkList.Add(text[j]);
+                    if (isChecked == false && text[j - 1] != text[j])
+                    {
+                        isLoopText = false;
+                        break;
+                    }
+                }
+
+                if (isLoopText == true)
+                {
+                    result++;
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem2941()
+        {
+            var croatia = new string[] { "c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z=" };
+            var text = new StringBuilder(Console.ReadLine());
+            for (int i = 0; i < croatia.Length; i++)
+            {
+                text.Replace(croatia[i], "0");
+            }
+
+            Console.WriteLine(text.Length);
+        }
+
+        public static void Problem1157()
+        {
+            var text = Console.ReadLine().ToUpper();
+            var dic = new Dictionary<char, int>();
+            var best = '?';
+            var maxCount = int.MinValue;
+
+            foreach (char c in text)
+            {
+                if (dic.TryGetValue(c, out int value) == false)
+                    dic.Add(c, 1);
+                else
+                    dic[c]++;
+
+                if (dic[c] > maxCount)
+                {
+                    maxCount = dic[c];
+                    best = c;
+                }
+                else if (dic[c] == maxCount)
+                {
+                    best = '?';
+                }
+            }
+
+            Console.WriteLine(best);
+        }
+    }
+
     public static class Day240820
     {
         public static void Problem10998()
@@ -14,7 +111,7 @@ namespace CodingTest.Baekjoon.Level6
             var result = 1;
             for (int i = 0; i < count; i++)
             {
-                if (text[i] != text[text.Length - i - 1] )
+                if (text[i] != text[text.Length - i - 1])
                 {
                     result = 0;
                     break;
@@ -37,9 +134,9 @@ namespace CodingTest.Baekjoon.Level6
                 int right = num + i - 1;
                 for (int j = 0; j < count; j++)
                 {
-                    if (left <= j && j <= right) 
+                    if (left <= j && j <= right)
                         sb.Append('*');
-                    else if(left > j)
+                    else if (left > j)
                         sb.Append(' ');
                     else
                         break;
@@ -50,7 +147,7 @@ namespace CodingTest.Baekjoon.Level6
             {
                 sb.Clear();
                 int left = num - i - 1;
-                int right = num + i - 1 ;
+                int right = num + i - 1;
                 for (int j = 0; j < count; j++)
                 {
                     if (left <= j && j <= right)
@@ -66,7 +163,7 @@ namespace CodingTest.Baekjoon.Level6
             for (int i = 0; i < texts.Length; i++)
             {
                 Console.Write(texts[i]);
-                if (i != texts.Length -1)
+                if (i != texts.Length - 1)
                 {
                     Console.WriteLine();
                 }
