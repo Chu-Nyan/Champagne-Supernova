@@ -2,6 +2,39 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 7단계 행렬
+namespace CodingTest.Baekjoon.Level7
+{
+    public static class Day240827
+    {
+        public static void Problem2738()
+        {
+            var text = Console.ReadLine().Split(' ');
+            int[,] ints = new int[int.Parse(text[0]),int.Parse(text[1])];
+
+            var count = ints.GetLength(0) * 2;
+            for (int i = 0; i < count; i++)
+            {
+                var index = i % ints.GetLength(0);
+                var array = Console.ReadLine().Split(' ');
+                for (int j = 0; j < array.Length; j++)
+                {
+                    ints[index, j] += int.Parse(array[j]);
+                }
+            }
+
+            for (int i = 0; i < ints.GetLength(0); i++)
+            {
+                for (int j = 0; j < ints.GetLength(1); j++)
+                {
+                    Console.Write(ints[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
 // 백준 6단계 심화 1,
 namespace CodingTest.Baekjoon.Level6
 {
