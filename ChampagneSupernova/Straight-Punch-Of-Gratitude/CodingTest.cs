@@ -5,12 +5,40 @@ using System.Text;
 // 백준 7단계 행렬
 namespace CodingTest.Baekjoon.Level7
 {
+    public static class Day240828
+    {
+        public static void Problem2566()
+        {
+            int maxValue = int.MinValue;
+            int x = 0;
+            int y = 0;
+
+            for (int i = 0; i < 9; i++)
+            {
+                var array = Console.ReadLine().Split(" ");
+                for (int j = 0; j < 9; j++)
+                {
+                    int arrayNum = int.Parse(array[j]);
+                    if (maxValue < arrayNum)
+                    {
+                        maxValue = arrayNum;
+                        x = i;
+                        y = j;
+                    }
+                }
+            }
+
+            Console.WriteLine(maxValue);
+            Console.WriteLine($"{x + 1} {y + 1}");
+        }
+    }
+
     public static class Day240827
     {
         public static void Problem2738()
         {
             var text = Console.ReadLine().Split(' ');
-            int[,] ints = new int[int.Parse(text[0]),int.Parse(text[1])];
+            int[,] ints = new int[int.Parse(text[0]), int.Parse(text[1])];
 
             var count = ints.GetLength(0) * 2;
             for (int i = 0; i < count; i++)
