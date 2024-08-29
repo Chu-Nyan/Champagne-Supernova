@@ -5,6 +5,34 @@ using System.Text;
 // 백준 7단계 행렬
 namespace CodingTest.Baekjoon.Level7
 {
+    public static class Day240829
+    {
+        public static void Problem10798()
+        {
+            var texts = new string[5];
+            string answer = "";
+            for (int i = 0; i < 5; i++)
+            {
+                texts[i] = Console.ReadLine();
+            }
+
+            var index = 0;
+            while (index < 15)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (index < texts[i].Length)
+                    {
+                        answer += texts[i][index];
+                    }
+                }
+                index++;
+            }
+
+            Console.WriteLine(answer);
+        }
+    }
+
     public static class Day240828
     {
         public static void Problem2566()
