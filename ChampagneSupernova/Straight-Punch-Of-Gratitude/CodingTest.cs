@@ -5,6 +5,35 @@ using System.Text;
 // 백준 7단계 행렬
 namespace CodingTest.Baekjoon.Level7
 {
+    public static class Day240902
+    {
+        public static void Problem2563()
+        {
+            var paper = new bool[101, 101];
+            var count = int.Parse(Console.ReadLine());
+            var result = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var pos = Console.ReadLine().Split(" ");
+                var startX = int.Parse(pos[0]);
+                var startY = int.Parse(pos[1]);
+                for (int x = 0; x < 10; x++)
+                {
+                    for (int y = 0; y < 10; y++)
+                    {
+                        if (paper[startX + x, startY + y] == false)
+                        {
+                            result++;
+                            paper[startX + x, startY + y] = true;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+
     public static class Day240829
     {
         public static void Problem10798()
