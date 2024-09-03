@@ -2,6 +2,56 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 8단계 일반 수학 1
+namespace CodingTest.Baekjoon.Level8
+{
+    public static class Day240903
+    {
+        public static void Problem2745()
+        {
+            var text = Console.ReadLine().Split(" ");
+            var numBase = int.Parse(text[1]);
+
+            int result = 0;
+            int count = 0;
+            int remain = 0;
+            for (int i = text[0].Length - 1; i >= 0; i--)
+            {
+                int before;
+                if (text[0][i] >= 'A')
+                    before = text[0][i] - 65 + 10 + remain;
+                else
+                    before = int.Parse(text[0][i].ToString()) + remain;
+
+                result += before * (int)Math.Pow(numBase, count);
+                count++;
+            }
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem11005()
+        {
+            var input = Console.ReadLine().Split(" ");
+            var numBase = int.Parse(input[1]);
+
+            var result = new StringBuilder();
+            int remain = int.Parse(input[0]);
+
+            while (remain > 0)
+            {
+                var num = (remain % numBase);
+                remain = remain / numBase;
+                if (num > 9)
+                    result.Insert(0, (char)(65 - 10 + num));
+                else
+                    result.Insert(0, num);
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+}
 // 백준 7단계 행렬
 namespace CodingTest.Baekjoon.Level7
 {
