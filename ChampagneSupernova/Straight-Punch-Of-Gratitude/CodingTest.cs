@@ -5,6 +5,42 @@ using System.Text;
 // 백준 8단계 일반 수학 1
 namespace CodingTest.Baekjoon.Level8
 {
+    public static class Day240904
+    {
+        public static void Problem2720()
+        {
+            var coins = new int[] { 25, 10, 5, 1 };
+            var count = int.Parse(Console.ReadLine());
+            var changes = new string[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                var change = int.Parse(Console.ReadLine());
+                for (int j = 0; j < coins.Length; j++)
+                {
+                    changes[i] += $"{change / coins[j]} ";
+                    change = change % coins[j];
+                }
+            }
+
+            for (int i = 0; i < changes.Length; i++)
+            {
+                Console.WriteLine(changes[i]);
+            }
+        }
+
+        public static void Problem2903()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var start = 2;
+            for (int i = 0; i < count; i++)
+            {
+                start += start - 1;
+            }
+            Console.WriteLine(start * start);
+        }
+    }
+
     public static class Day240903
     {
         public static void Problem2745()
