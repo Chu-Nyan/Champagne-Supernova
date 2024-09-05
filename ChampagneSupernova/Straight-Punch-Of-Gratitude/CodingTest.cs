@@ -5,6 +5,59 @@ using System.Text;
 // 백준 8단계 일반 수학 1
 namespace CodingTest.Baekjoon.Level8
 {
+    public static class Day240905
+    {
+        public static void Problem2869()
+        {
+            var text = Console.ReadLine().Split(" ");
+            var move = int.Parse(text[0]);
+            var fall = int.Parse(text[1]);
+            var target = int.Parse(text[2]);
+
+            var day = (target - move) / (move - fall) + 1;
+            if ((target - move) % (move - fall) != 0)
+                day++;
+
+            Console.WriteLine(day);
+        }
+
+        public static void Problem1193()
+        {
+            var target = int.Parse(Console.ReadLine());
+
+            var count = 1;
+            var index = 1;
+            while (count < target)
+            {
+                index++;
+                count += index;
+            }
+
+            target = count - target;
+            var child = index - target;
+            var mother = 1 + target;
+
+            if (index % 2 == 1)
+                Console.WriteLine($"{mother}/{child}");
+            else
+                Console.WriteLine($"{child}/{mother}");
+        }
+
+        public static void Problem2292()
+        {
+            var target = int.Parse(Console.ReadLine());
+            var maxNumber = 1;
+            var count = 1;
+            while (target > maxNumber)
+            {
+                maxNumber += (count * 6);
+                count++;
+            }
+
+            Console.WriteLine(count);
+        }
+    }
+
     public static class Day240904
     {
         public static void Problem2720()
