@@ -2,6 +2,65 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 9단계, 배수와 소수
+namespace CodingTest.Baekjoon.Level9
+{
+    public static class Day240906
+    {
+        public static void Problem2501()
+        {
+            var texts = Console.ReadLine().Split(" ");
+            var number = int.Parse(texts[0]);
+            var targetCount = int.Parse(texts[1]);
+            var count = 0;
+            var target = 0;
+            for (int i = 1; i < number; i++)
+            {
+                if (number % i == 0)
+                {
+                    count++;
+                    if (count == targetCount)
+                    {
+                        target = i;
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine(target);
+        }
+
+        public static void Problem5086()
+        {
+            var texts = new List<string>();
+            while (true)
+            {
+                var text = Console.ReadLine().Split(" ");
+                var left = int.Parse(text[0]);
+                var right = int.Parse(text[1]);
+                if (left != 0 && right != 0)
+                {
+                    if (left % right == 0)
+                        texts.Add("multiple");
+                    else if (right % left == 0)
+                        texts.Add("factor");
+                    else
+                        texts.Add("neither");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            foreach (var text in texts)
+            {
+                Console.WriteLine(text);
+            }
+                
+        }
+    }
+}
 // 백준 8단계 일반 수학 1
 namespace CodingTest.Baekjoon.Level8
 {
