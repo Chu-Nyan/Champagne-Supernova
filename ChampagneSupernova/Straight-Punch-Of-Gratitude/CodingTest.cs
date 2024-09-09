@@ -5,6 +5,84 @@ using System.Text;
 // 백준 9단계, 배수와 소수
 namespace CodingTest.Baekjoon.Level9
 {
+    public static class Day240909
+    {
+        public static void Problem1978()
+        {
+            Console.ReadLine();
+            var data = Console.ReadLine().Split(" ");
+            var result = 0;
+            for (int i = 0; i < data.Length; i++)
+            {
+                int number = int.Parse(data[i]);
+                var count = 0;
+                for (int j = 1; j < number; j++)
+                {
+                    if (number % j == 0)
+                    {
+                        count++;
+
+                        if (count != 1)
+                            break;
+                    }
+                }
+
+                if (count == 1)
+                {
+                    result++;
+                }
+            }
+            Console.WriteLine(result);
+        }
+
+        public static void Problem9506()
+        {
+            var list = new List<int>();
+            while (true)
+            {
+                var number = int.Parse(Console.ReadLine());
+                if (number == -1)
+                    break;
+
+                list.Clear();
+                var count = number * 0.5f;
+                var result = new StringBuilder($"{number} = ");
+                var sum = 0;
+
+                for (int i = 1; i <= count; i++)
+                {
+                    var amount = number % i;
+                    if (amount == 0)
+                    {
+                        sum += i;
+                        list.Add(i);
+                    }
+                }
+
+                if (sum == number)
+                {
+                    var lastNum = list.Count - 1;
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (i == lastNum)
+                        {
+                            result.Append(list[i]);
+                        }
+                        else
+                        {
+                            result.Append($"{list[i]} + ");
+                        }
+                    }
+                    Console.WriteLine(result);
+                }
+                else
+                {
+                    Console.WriteLine($"{number} is NOT perfect.");
+                }
+            }
+        }
+    }
+
     public static class Day240906
     {
         public static void Problem2501()
@@ -14,7 +92,7 @@ namespace CodingTest.Baekjoon.Level9
             var targetCount = int.Parse(texts[1]);
             var count = 0;
             var target = 0;
-            for (int i = 1; i < number; i++)
+            for (int i = 1; i <= number; i++)
             {
                 if (number % i == 0)
                 {
@@ -57,7 +135,7 @@ namespace CodingTest.Baekjoon.Level9
             {
                 Console.WriteLine(text);
             }
-                
+
         }
     }
 }
