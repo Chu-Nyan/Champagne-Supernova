@@ -5,6 +5,72 @@ using System.Text;
 // 백준 9단계, 배수와 소수
 namespace CodingTest.Baekjoon.Level9
 {
+    public static class Day240910
+    {
+        public static void Problem11653()
+        {
+            var input = int.Parse(Console.ReadLine());
+            if (input == 1)
+                return;
+
+            var number = input;
+
+            while (number != 1)
+            {
+                for (int i = 2; i <= number; i++)
+                {
+                    if (number % i == 0)
+                    {
+                        number /= i;
+                        Console.WriteLine(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static void Problem2581()
+        {
+            var min = int.Parse(Console.ReadLine());
+            var max = int.Parse(Console.ReadLine());
+
+            var sum = 0;
+            var minNumber = int.MaxValue;
+
+            for (int i = min; i <= max; i++)
+            {
+                var count = 0;
+                for (int j = 1; j < i; j++)
+                {
+                    if (i % j == 0)
+                    {
+                        count++;
+
+                        if (count != 1)
+                            break;
+                    }
+                }
+
+                if (count == 1)
+                {
+                    sum += i;
+                    if (minNumber > i)
+                        minNumber = i;
+                }
+            }
+
+            if (sum == 0)
+            {
+                Console.WriteLine(-1);
+            }
+            else
+            {
+                Console.WriteLine(sum);
+                Console.WriteLine(minNumber);
+            }
+        }
+    }
+
     public static class Day240909
     {
         public static void Problem1978()
@@ -139,6 +205,7 @@ namespace CodingTest.Baekjoon.Level9
         }
     }
 }
+
 // 백준 8단계 일반 수학 1
 namespace CodingTest.Baekjoon.Level8
 {
