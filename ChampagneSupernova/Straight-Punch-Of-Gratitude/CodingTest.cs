@@ -2,6 +2,81 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 10단계, 기하: 직사각형과 삼각형
+namespace CodingTest.Baekjoon.Level10
+{
+    public static class Day240911
+    {
+        public static void Problem3009()
+        {
+            var xs = new Dictionary<int, bool>();
+            var ys = new Dictionary<int, bool>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                var input = Console.ReadLine().Split(" ");
+                var x = int.Parse(input[0]);
+                var y = int.Parse(input[1]);
+
+                if (xs.TryAdd(x,false) == false)
+                    xs[x] = true;
+
+                if (ys.TryAdd(y, false) == false)
+                    ys[y] = true;
+            }
+
+            var result = new int[2];
+            foreach (var x in xs)
+            {
+                if (x.Value == false)
+                    result[0] = x.Key;
+            }
+
+            foreach (var y in ys)
+            {
+                if (y.Value == false)
+                    result[1] = y.Key;
+            }
+
+            Console.WriteLine($"{result[0]} {result[1]}");
+        }
+
+        public static void Problem15984()
+        {
+            var a = long.Parse(Console.ReadLine());
+            Console.WriteLine(a * 4);
+        }
+
+        public static void Problem1085()
+        {
+            var input = Console.ReadLine().Split(" ");
+            var result = int.MaxValue;
+
+            var myX = int.Parse(input[0]);
+            var myY = int.Parse(input[1]);
+            var bound = new int[] { 0, 0, int.Parse(input[2]), int.Parse(input[3]) };
+
+            for (int i = 0; i < bound.Length; i++)
+            {
+                var target = i % 2 == 0 ? myX : myY;
+                var num = Math.Abs(bound[i] - target);
+
+                if (result > num)
+                    result = num;
+            }
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem27323()
+        {
+            var a = int.Parse(Console.ReadLine());
+            var b = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(a * b);
+        }
+    }
+}
 // 백준 9단계, 배수와 소수
 namespace CodingTest.Baekjoon.Level9
 {
