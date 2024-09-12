@@ -5,6 +5,63 @@ using System.Text;
 // 백준 10단계, 기하: 직사각형과 삼각형
 namespace CodingTest.Baekjoon.Level10
 {
+    public static class Day240912
+    {
+        public static void Problem10101()
+        {
+            var angle = new Dictionary<int, int>();
+            var sameAngle = 0;
+            var sum = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                var num = int.Parse(Console.ReadLine());
+                sum += num;
+                if (angle.ContainsKey(num) == true)
+                    angle[num]++;
+                else
+                    angle.Add(num, 1);
+
+                if (sameAngle < angle[num])
+                    sameAngle = angle[num];
+            }
+
+            if (sum != 180)
+                Console.WriteLine("Error");
+            else if (sameAngle == 1)
+                Console.WriteLine("Scalene");
+            else if (sameAngle == 2)
+                Console.WriteLine("Isosceles");
+            else if (sameAngle == 3)
+                Console.WriteLine("Equilateral");
+        }
+
+        public static void Problem9063()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var xs = new int[] { int.MaxValue, int.MinValue };
+            var ys = new int[] { int.MaxValue, int.MinValue };
+            for (int i = 0; i < count; i++)
+            {
+                var input = Console.ReadLine().Split(" ");
+                var x = int.Parse(input[0]);
+                var y = int.Parse(input[1]);
+                if (xs[0] > x)
+                    xs[0] = x;
+                if (xs[1] < x)
+                    xs[1] = x;
+
+                if (ys[0] > y)
+                    ys[0] = y;
+                if (ys[1] < y)
+                    ys[1] = y;
+            }
+
+            Console.WriteLine((xs[1] - xs[0]) * (ys[1] - ys[0]));
+        }
+
+    }
+
     public static class Day240911
     {
         public static void Problem3009()
@@ -18,7 +75,7 @@ namespace CodingTest.Baekjoon.Level10
                 var x = int.Parse(input[0]);
                 var y = int.Parse(input[1]);
 
-                if (xs.TryAdd(x,false) == false)
+                if (xs.TryAdd(x, false) == false)
                     xs[x] = true;
 
                 if (ys.TryAdd(y, false) == false)
