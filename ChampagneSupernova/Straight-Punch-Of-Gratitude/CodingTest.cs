@@ -5,6 +5,64 @@ using System.Text;
 // 백준 10단계, 기하: 직사각형과 삼각형
 namespace CodingTest.Baekjoon.Level10
 {
+    public static class Day240913
+    {
+        public static void Problem14215()
+        {
+            var numbers = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var sum = 0;
+            var maxValue = int.MinValue;
+
+            for (int j = 0; j < numbers.Length; j++)
+            {
+                sum += numbers[j];
+                if (maxValue < numbers[j])
+                    maxValue = numbers[j];
+            }
+
+            var distance = sum - maxValue - maxValue;
+            if (distance <= 0)
+                sum += distance - 1;
+
+            Console.WriteLine(sum);
+        }
+
+        public static void Problem5073()
+        {
+            while (true)
+            {
+                var input = Console.ReadLine().Split();
+                var numbers = new int[] { int.Parse(input[0]), int.Parse(input[1]), int.Parse(input[2]) };
+                var sum = numbers[0] + numbers[1] + numbers[2];
+
+                if (sum != 0)
+                {
+                    var length = new HashSet<int>();
+                    var maxValue = int.MinValue;
+                    for (int j = 0; j < numbers.Length; j++)
+                    {
+                        length.Add(numbers[j]);
+                        if (maxValue < numbers[j])
+                            maxValue = numbers[j];
+                    }
+
+                    if (sum - maxValue - maxValue <= 0)
+                        Console.WriteLine("Invalid");
+                    else if (length.Count == 1)
+                        Console.WriteLine("Equilateral");
+                    else if (length.Count == 2)
+                        Console.WriteLine("Isosceles");
+                    else if (length.Count == 3)
+                        Console.WriteLine("Scalene");
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    }
+
     public static class Day240912
     {
         public static void Problem10101()
