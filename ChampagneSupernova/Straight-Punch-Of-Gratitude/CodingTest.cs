@@ -2,6 +2,61 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 11단계, 시간 복잡도
+namespace CodingTest.Baekjon.Level11
+{
+    public static class Day240918
+    {
+        public static void Problem24267()
+        {
+            var n = long.Parse(Console.ReadLine());
+            Console.WriteLine((n - 2) * (n - 1) * n / 6);
+            Console.WriteLine(3);
+        }
+
+        public static void Problem24266()
+        {
+            var num = long.Parse(Console.ReadLine());
+            Console.WriteLine(num * num * num);
+            Console.WriteLine(3);
+        }
+
+        public static void Problem24265()
+        {
+            var num = int.Parse(Console.ReadLine());
+            long count = 0;
+            for (int i = 1; i < num; i++)
+            {
+                count += num - i;
+            }
+
+            Console.WriteLine(count);
+            Console.WriteLine(2);
+        }
+
+        public static void Problem24264()
+        {
+            var num = long.Parse(Console.ReadLine());
+            Console.WriteLine(num * num);
+            Console.WriteLine(2);
+        }
+
+        public static void Problem24263()
+        {
+            var num = Console.ReadLine();
+            Console.WriteLine(num);
+            Console.WriteLine(1);
+        }
+
+        public static void Problem24262()
+        {
+            Console.ReadLine();
+            Console.WriteLine(1);
+            Console.WriteLine(0);
+        }
+    }
+}
+
 // 백준 10단계, 기하: 직사각형과 삼각형
 namespace CodingTest.Baekjoon.Level10
 {
