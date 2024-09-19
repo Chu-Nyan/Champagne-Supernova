@@ -5,6 +5,25 @@ using System.Text;
 // 백준 11단계, 시간 복잡도
 namespace CodingTest.Baekjon.Level11
 {
+    public static class Day240919
+    {
+        public static void Problem24313()
+        {
+            var input = Console.ReadLine().Split();
+            var a1 = int.Parse(input[0]);
+            var a0 = int.Parse(input[1]);
+            var c = int.Parse(Console.ReadLine());
+            var n = int.Parse(Console.ReadLine());
+
+            var fn = a1 * n + a0;
+
+            if (fn <= n * c)
+                Console.WriteLine(1);
+            else
+                Console.WriteLine(0);
+        }
+    }
+
     public static class Day240918
     {
         public static void Problem24267()
