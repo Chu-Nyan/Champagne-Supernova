@@ -2,6 +2,42 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 12단계, 브루트 포스
+namespace CodingTest.Baekjon.Level12
+{
+    public static class Day240922
+    {
+        public static void Problem2798()
+        {
+            var input = Console.ReadLine().Split();
+            var cards = Array.ConvertAll(Console.ReadLine().Split(), int.Parse); ;
+            var targetScore = int.Parse(input[1]);
+
+            Console.WriteLine(Loop(0, 0, 0, 0));
+
+            int Loop(int index, int sum, int count, int bestScore)
+            {
+                if (count < 3)
+                {
+                    for (int i = index; i < cards.Length - (2 - count); i++)
+                    {
+                        var temp = Loop(i + 1, sum + cards[i], count + 1, bestScore);
+
+                        if (temp <= targetScore && bestScore < temp)
+                            bestScore = temp;
+                    }
+                }
+                else if (sum <= targetScore && bestScore < sum)
+                {
+                    bestScore = sum;
+                }
+
+                return bestScore;
+            }
+        }
+    }
+}
+
 // 백준 11단계, 시간 복잡도
 namespace CodingTest.Baekjon.Level11
 {
