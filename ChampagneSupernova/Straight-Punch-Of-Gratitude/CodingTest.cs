@@ -5,6 +5,37 @@ using System.Text;
 // 백준 12단계, 브루트 포스
 namespace CodingTest.Baekjon.Level12
 {
+    public static class Day240923
+    {
+        public static void Problem2231()
+        {
+            var num = int.Parse(Console.ReadLine());
+            var result = 0;
+
+            for (int i = num - (9 * num.ToString().Length); i < num; i++)
+            {
+                if (i > 0)
+                {
+                    var remain = i;
+                    var sum = i;
+                    while (remain > 0)
+                    {
+                        sum += remain % 10;
+                        remain /= 10;
+                    }
+
+                    if (sum == num)
+                    {
+                        result = i;
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+
     public static class Day240922
     {
         public static void Problem2798()
