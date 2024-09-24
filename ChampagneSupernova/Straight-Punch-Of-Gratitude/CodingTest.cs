@@ -5,6 +5,26 @@ using System.Text;
 // 백준 12단계, 브루트 포스
 namespace CodingTest.Baekjon.Level12
 {
+    public static class Day240924
+    {
+        public static void Problem19532()
+        {
+            var nums = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            
+            for (int x = -999; x < 1000; x++)
+            {
+                for (int y = -999; y < 1000; y++)
+                {
+                    if (nums[0] * x + nums[1] * y == nums[2] && nums[3] * x + nums[4] * y == nums[5])
+                    {
+                        Console.WriteLine($"{x} {y}");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     public static class Day240923
     {
         public static void Problem2231()
