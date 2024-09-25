@@ -5,12 +5,56 @@ using System.Text;
 // 백준 12단계, 브루트 포스
 namespace CodingTest.Baekjon.Level12
 {
+    public static class Day240925
+    {
+        public static void Problem1018()
+        {
+            var nums = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var strings = new string[nums[0]];
+            var min = int.MaxValue;
+
+            for (int i = 0; i < nums[0]; i++)
+            {
+                strings[i] = Console.ReadLine();
+            }
+
+            for (int y = 0; y < nums[0] - 7; y++)
+            {
+                for (int x = 0; x < nums[1] - 7; x++)
+                {
+                    var value = Check(x, y);
+
+                    if (min > value)
+                        min = value;
+                }
+            }
+
+            Console.WriteLine(min);
+
+            int Check(int x, int y)
+            {
+                var startW = 0;
+                for (int yy = y; yy < y + 8; yy++)
+                {
+                    for (int xx = x; xx < x + 8; xx++)
+                    {
+                        var wb = (yy + xx) % 2;
+                        if ((wb == 0 && strings[yy][xx] != 'W') || (wb == 1 && strings[yy][xx] != 'B'))
+                            startW++;
+                    }
+                }
+
+                return startW > 32 ? 64 - startW : startW;
+            }
+        }
+    }
+
     public static class Day240924
     {
         public static void Problem19532()
         {
             var nums = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
-            
+
             for (int x = -999; x < 1000; x++)
             {
                 for (int y = -999; y < 1000; y++)
