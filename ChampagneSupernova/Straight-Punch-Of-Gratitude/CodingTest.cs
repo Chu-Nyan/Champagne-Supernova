@@ -5,6 +5,31 @@ using System.Text;
 // 백준 12단계, 브루트 포스
 namespace CodingTest.Baekjon.Level12
 {
+    public static class Day240926
+    {
+        public static void Problem1436()
+        {
+            var targetCount = int.Parse(Console.ReadLine());
+            var count = 0;
+            var num = 665;
+            while (count != targetCount)
+            {
+                num++;
+                var text = num.ToString();
+                for (int i = 0; i < text.Length - 2; i++)
+                {
+                    if (text[i] == '6' && text[i+1] == '6' && text[i+2] == '6')
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine(num);
+        }
+    }
+
     public static class Day240925
     {
         public static void Problem1018()
