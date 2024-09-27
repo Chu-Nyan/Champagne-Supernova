@@ -5,6 +5,27 @@ using System.Text;
 // 백준 12단계, 브루트 포스
 namespace CodingTest.Baekjon.Level12
 {
+    public static class Day240927
+    {
+        public static void Problem2839()
+        {
+            var n = int.Parse(Console.ReadLine());
+            var result = -1;
+
+            for (int i = n / 5; i >= 0; i--)
+            {
+                var remain = n - (5 * i);
+                if (remain % 3 == 0)
+                {
+                    result = i + (remain / 3);
+                    break;
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+
     public static class Day240926
     {
         public static void Problem1436()
@@ -18,7 +39,7 @@ namespace CodingTest.Baekjon.Level12
                 var text = num.ToString();
                 for (int i = 0; i < text.Length - 2; i++)
                 {
-                    if (text[i] == '6' && text[i+1] == '6' && text[i+2] == '6')
+                    if (text[i] == '6' && text[i + 1] == '6' && text[i + 2] == '6')
                     {
                         count++;
                         break;
