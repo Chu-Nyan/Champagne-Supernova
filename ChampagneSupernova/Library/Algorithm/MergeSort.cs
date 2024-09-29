@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Sort
+namespace ChampagneSupernova.Library.Algorithm
 {
     public static class MergeSort<T> where T : IComparable<T>
     {
