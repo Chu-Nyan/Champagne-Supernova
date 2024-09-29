@@ -2,6 +2,53 @@
 using System.Collections.Generic;
 using System.Text;
 
+// 백준 13단계, 정렬
+namespace CodingTest.Baekjon.Level13
+{
+    public static class Day240929
+    {
+        public static void Problem25305()
+        {
+            var r = int.Parse(Console.ReadLine().Split()[1]);
+            var a = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Array.Sort(a);
+            Console.WriteLine(a[^r]);
+        }
+
+        public static void Problem2587()
+        {
+            var array = new List<int>(5);
+            var sum = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                var number = int.Parse(Console.ReadLine());
+                array.Add(number);
+                sum += number;
+            }
+
+            array.Sort();
+            Console.WriteLine(sum / 5);
+            Console.WriteLine(array[2]);
+        }
+
+        public static void Problem2750()
+        {
+            var array = new List<int>(int.Parse(Console.ReadLine()));
+
+            for (int i = 0; i < array.Capacity; i++)
+            {
+                array.Add(int.Parse(Console.ReadLine()));
+            }
+            array.Sort();
+
+            foreach (var num in array)
+            {
+                Console.WriteLine(num);
+            }
+        }
+    }
+}
 // 백준 12단계, 브루트 포스
 namespace CodingTest.Baekjon.Level12
 {
