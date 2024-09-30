@@ -5,6 +5,80 @@ using System.Text;
 // 백준 13단계, 정렬
 namespace CodingTest.Baekjon.Level13
 {
+    public static class Day240930
+    {
+        public static void Problem11651()
+        {
+            var arr = new List<int[]>(int.Parse(Console.ReadLine()));
+            for (int i = 0; i < arr.Capacity; i++)
+            {
+                arr.Add(Array.ConvertAll(Console.ReadLine().Split(),int.Parse));
+            }
+
+            arr.Sort((x, y) =>
+            {
+                var result = x[1].CompareTo(y[1]);
+                return result != 0 ? result : x[0].CompareTo(y[0]);
+            });
+
+            var sb = new StringBuilder();
+            foreach (var data in arr)
+            {
+                sb.AppendLine($"{data[0]} {data[1]}");
+            }
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem11650()
+        {
+            var arr = new List<int[]>(int.Parse(Console.ReadLine()));
+            for (int i = 0; i < arr.Capacity; i++)
+            {
+                arr.Add(Array.ConvertAll(Console.ReadLine().Split(), int.Parse));
+            }
+
+            arr.Sort((x, y) =>
+            {
+                var result = x[0].CompareTo(y[0]);
+                return result != 0 ? result : x[1].CompareTo(y[1]);
+            });
+
+
+            var sb = new StringBuilder();
+            foreach (var data in arr)
+            {
+                sb.AppendLine($"{data[0]} {data[1]}");
+            }
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem1427()
+        {
+            var input = Console.ReadLine().ToCharArray();
+            Array.Sort(input, (x, y) => y.CompareTo(x));
+            Console.WriteLine(input);
+        }
+
+        public static void Problem2751()
+        {
+            var arr = new List<int>(int.Parse(Console.ReadLine()));
+
+            for (int i = 0; i < arr.Capacity; i++)
+            {
+                arr.Add(int.Parse(Console.ReadLine()));
+            }
+            arr.Sort();
+
+            var sb = new StringBuilder();
+            foreach (var num in arr)
+            {
+                sb.AppendLine($"{num}");
+            }
+
+            Console.WriteLine(sb);
+        }
+    }
+
     public static class Day240929
     {
         public static void Problem25305()
