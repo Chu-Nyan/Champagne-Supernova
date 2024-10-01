@@ -1,10 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 // 백준 13단계, 정렬
 namespace CodingTest.Baekjon.Level13
 {
+    public static class Day241001
+    {
+        public static void Problem1181()
+        {
+            var arr = new string[int.Parse(Console.ReadLine())];
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = Console.ReadLine();
+            }
+
+            arr = arr.Distinct().ToArray();
+            Array.Sort(arr, (x, y) =>
+            {
+                if (x.Length > y.Length)
+                    return 1;
+                else if (x.Length < y.Length)
+                    return -1;
+
+                var result = x.CompareTo(y);
+                return result != 0 ? result : x.CompareTo(y);
+            });
+
+            var sb = new StringBuilder();
+            foreach (var data in arr)
+            {
+                sb.AppendLine(data);
+            }
+            Console.WriteLine(sb);
+
+            //var count = int.Parse(Console.ReadLine());
+            //var hashset = new HashSet<string>(count);
+            //var arr = new List<string>();
+            //for (int i = 0; i < count; i++)
+            //{
+            //    var text = Console.ReadLine();
+            //    if (hashset.Add(text) == true)
+            //        arr.Add(text);
+            //}
+
+            //arr.Sort((x, y) =>
+            //{
+            //    if (x.Length > y.Length)
+            //        return 1;
+            //    else if (x.Length < y.Length)
+            //        return -1;
+
+            //    var result = x.CompareTo(y);
+            //    return result != 0 ? result : x.CompareTo(y);
+            //});
+
+            //var sb = new StringBuilder();
+            //foreach (var data in arr)
+            //{
+            //    sb.AppendLine(data);
+            //}
+            //Console.WriteLine(sb);
+
+        }
+    }
+
     public static class Day240930
     {
         public static void Problem11651()
@@ -12,7 +74,7 @@ namespace CodingTest.Baekjon.Level13
             var arr = new List<int[]>(int.Parse(Console.ReadLine()));
             for (int i = 0; i < arr.Capacity; i++)
             {
-                arr.Add(Array.ConvertAll(Console.ReadLine().Split(),int.Parse));
+                arr.Add(Array.ConvertAll(Console.ReadLine().Split(), int.Parse));
             }
 
             arr.Sort((x, y) =>
