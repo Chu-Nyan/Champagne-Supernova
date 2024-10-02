@@ -6,6 +6,33 @@ using System.Text;
 // 백준 13단계, 정렬
 namespace CodingTest.Baekjon.Level13
 {
+    public static class Day241002
+    {
+        public static void Problem10814()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var members = new Tuple<int, string, int>[count];
+            for (int i = 0; i < count; i++)
+            {
+                var arr = Console.ReadLine().Split(" ");
+                members[i] = new(int.Parse(arr[0]), arr[1], i);
+            }
+
+            Array.Sort(members, (a, b) =>
+            {
+                var result = a.Item1 - b.Item1;
+                return result != 0 ? result : result = a.Item3 - b.Item3;
+            });
+
+            var sb = new StringBuilder();
+            foreach (var mem in members)
+            {
+                sb.AppendLine($"{mem.Item1} {mem.Item2}");
+            }
+            Console.WriteLine(sb);
+        }
+    }
+
     public static class Day241001
     {
         public static void Problem1181()
