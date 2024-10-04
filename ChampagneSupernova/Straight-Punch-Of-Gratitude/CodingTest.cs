@@ -6,6 +6,52 @@ using System.Text;
 // 백준 13단계, 정렬
 namespace CodingTest.Baekjon.Level13
 {
+    public static class Day241004
+    {
+        public static void Problem18870()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var arrSort = arr.Distinct().ToArray();
+            Array.Sort(arrSort);
+
+            var cashing = new Dictionary<int, int>();
+
+            for (int i = 0; i < arrSort.Length; i++)
+            {
+                cashing.Add(arrSort[i], i);
+            }
+
+            var sb = new StringBuilder();
+            foreach (var num in arr)
+            {
+                sb.Append($"{cashing[num]} ");
+            }
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem10989()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var arr = new int[10001];
+            for (int i = 0; i < count; i++)
+            {
+                var number = int.Parse(Console.ReadLine());
+                arr[number]++;
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr[i]; j++)
+                {
+                    sw.WriteLine(i);
+                }
+            }
+
+        }
+    }
+
     public static class Day241002
     {
         public static void Problem10814()
