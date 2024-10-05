@@ -3,6 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+// 백준 14단계, 집합과 맵
+namespace CodingTest.Baekjon.Level14
+{
+    public static class Day241005
+    {
+        public static void Problem7785()
+        {
+            var n = int.Parse(Console.ReadLine());
+            var check = new HashSet<string>();
+            for (int i = 0; i < n; i++)
+            {
+                var data = Console.ReadLine().Split();
+                var contains = check.Contains(data[0]);
+                if (data[1] == "enter" && contains == false)
+                    check.Add(data[0]);
+                else if (contains == true)
+                    check.Remove(data[0]);
+            }
+
+            var arr = check.ToArray();
+            Array.Sort(arr);
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            for (int i = arr.Length - 1; i >= 0; i--)
+            {
+                sw.WriteLine(arr[i]);
+            }
+        }
+
+        public static void Problem14425()
+        {
+            var counts = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var s = new HashSet<string>();
+
+            for (int i = 0; i < counts[0]; i++)
+            {
+                s.Add(Console.ReadLine());
+            }
+
+            var result = 0;
+            for (int i = 0; i < counts[1]; i++)
+            {
+                if (s.Contains(Console.ReadLine()) == true)
+                    result++;
+            }
+            Console.WriteLine(result);
+        }
+
+        public static void Problem10815()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var n = Array.ConvertAll(Console.ReadLine().Split(), int.Parse).ToHashSet();
+            count = int.Parse(Console.ReadLine());
+            var m = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var i in m)
+            {
+                sw.Write(n.Contains(i) == true ? "1 " : "0 ");
+            }
+        }
+    }
+}
 // 백준 13단계, 정렬
 namespace CodingTest.Baekjon.Level13
 {
