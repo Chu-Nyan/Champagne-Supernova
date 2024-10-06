@@ -6,6 +6,39 @@ using System.Text;
 // 백준 14단계, 집합과 맵
 namespace CodingTest.Baekjon.Level14
 {
+    public static class Day241006
+    {
+        public static void Problem1620()
+        {
+            var nm = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var col = new Dictionary<string, int>();
+            var arr = new string[nm[0] + 1];
+            for (int i = 0; i < nm[0]; i++)
+            {
+                var name = Console.ReadLine();
+                var num = i + 1;
+                col.Add(name, num);
+                arr[num] = name;
+            }
+
+            var results = new string[nm[1]];
+            for (int i = 0; i < nm[1]; i++)
+            {
+                var text = Console.ReadLine();
+                if (int.TryParse(text,out var result) == true)
+                    results[i] = arr[result];
+                else
+                    results[i] = (col[text].ToString());
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var a in results)
+            {
+                sw.WriteLine(a);
+            }
+        }
+    }
+
     public static class Day241005
     {
         public static void Problem7785()
