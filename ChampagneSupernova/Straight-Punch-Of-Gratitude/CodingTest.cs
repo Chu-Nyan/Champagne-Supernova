@@ -6,6 +6,57 @@ using System.Text;
 // 백준 14단계, 집합과 맵
 namespace CodingTest.Baekjon.Level14
 {
+    public static class Day241007
+    {
+        public static void Problem1764()
+        {
+            var nm = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var hashSet = new HashSet<string>();
+            var arr = new List<string>();
+            for (int i = 0; i < nm[0]; i++)
+            {
+                hashSet.Add(Console.ReadLine());
+            }
+
+            for (int i = 0; i < nm[1]; i++)
+            {
+                var name = Console.ReadLine();
+                if (hashSet.Contains(name) == true)
+                    arr.Add(name);
+            }
+            arr.Sort();
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            sw.WriteLine(arr.Count);
+            foreach (var a in arr)
+            {
+                sw.WriteLine(a);
+            }
+        }
+
+        public static void Problem10816()
+        {
+            Console.ReadLine();
+            var nArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Console.ReadLine();
+            var mArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+            var dic = new Dictionary<int, int>();
+            for (int i = 0; i < nArr.Length; i++)
+            {
+                if (dic.TryAdd(nArr[i],1) == false)
+                    dic[nArr[i]]++;
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var a in mArr)
+            {
+                dic.TryGetValue(a, out var value);
+                sw.Write($"{value} ");
+            }
+        }
+    }
+
     public static class Day241006
     {
         public static void Problem1620()
