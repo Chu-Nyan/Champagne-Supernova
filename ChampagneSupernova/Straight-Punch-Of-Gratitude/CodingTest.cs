@@ -6,6 +6,41 @@ using System.Text;
 // 백준 14단계, 집합과 맵
 namespace CodingTest.Baekjon.Level14
 {
+    public static class Day241008
+    {
+        public static void Problem1769()
+        {
+            Console.ReadLine();
+            var arr1 = Array.ConvertAll(Console.ReadLine().Split(), int.Parse).ToHashSet();
+            var arr2 = Array.ConvertAll(Console.ReadLine().Split(), int.Parse).ToHashSet();
+            var count = arr1.Count + arr2.Count;
+            foreach (var item in arr1)
+            {
+                if (arr2.Contains(item) == true)
+                {
+                    count -= 2;
+                }
+            }
+
+            Console.WriteLine(count);
+        }
+
+        public static void Problem11478()
+        {
+            var text = Console.ReadLine();
+            var arr = new HashSet<string>();
+            for (int i = 1; i <= text.Length; i++)
+            {
+                for (int j = 0; j <= text.Length - i; j++)
+                {
+                    arr.Add(text.Substring(j, i));
+                }
+            }
+
+            Console.WriteLine(arr.Count);
+        }
+    }
+
     public static class Day241007
     {
         public static void Problem1764()
