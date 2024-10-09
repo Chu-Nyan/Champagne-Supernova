@@ -6,6 +6,42 @@ using System.Text;
 // 백준 14단계, 집합과 맵
 namespace CodingTest.Baekjon.Level14
 {
+    public static class Day241009
+    {
+        public static void Problem1934()
+        {
+            var inputCount = int.Parse(Console.ReadLine());
+            var results = new int[inputCount];
+            for (int i = 0; i < inputCount; i++)
+            {
+                var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+                var count = 1;
+                var result = 1;
+
+                while (count < arr[0])
+                {
+                    count++;
+                    if (arr[0] % count == 0 && arr[1] % count == 0)
+                    {
+                        arr[0] /= count;
+                        arr[1] /= count;
+
+                        result *= count;
+                        count = 1;
+                    }
+                }
+
+                results[i] = result * arr[0] * arr[1];
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var a in results)
+            {
+                sw.WriteLine(a);
+            }
+        }
+    }
+
     public static class Day241008
     {
         public static void Problem1769()
@@ -79,7 +115,7 @@ namespace CodingTest.Baekjon.Level14
             var dic = new Dictionary<int, int>();
             for (int i = 0; i < nArr.Length; i++)
             {
-                if (dic.TryAdd(nArr[i],1) == false)
+                if (dic.TryAdd(nArr[i], 1) == false)
                     dic[nArr[i]]++;
             }
 
@@ -111,7 +147,7 @@ namespace CodingTest.Baekjon.Level14
             for (int i = 0; i < nm[1]; i++)
             {
                 var text = Console.ReadLine();
-                if (int.TryParse(text,out var result) == true)
+                if (int.TryParse(text, out var result) == true)
                     results[i] = arr[result];
                 else
                     results[i] = (col[text].ToString());
