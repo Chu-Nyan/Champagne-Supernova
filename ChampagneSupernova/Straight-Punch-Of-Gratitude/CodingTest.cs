@@ -6,6 +6,24 @@ using System.Text;
 // 백준 14단계, 집합과 맵
 namespace CodingTest.Baekjon.Level14
 {
+    public static class Day241010
+    {
+        public static void Problem13241()
+        {
+            var nums = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+            var (n0, n1) = nums[0] > nums[1] ? (nums[0], nums[1]) : (nums[1], nums[0]);
+
+            while (n0 % n1 != 0)
+            {
+                var temp = n0;
+                n0 = n1;
+                n1 = temp % n1;
+            }
+
+            Console.WriteLine(nums[0] * nums[1] / n1);
+        }
+    }
+
     public static class Day241009
     {
         public static void Problem1934()
