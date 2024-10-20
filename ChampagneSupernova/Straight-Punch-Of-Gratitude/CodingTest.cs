@@ -3,6 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+// 백준 19단계, 조합론
+namespace CodingTest.Baekjon.Level19
+{
+    public static class Day241019
+    {
+        public static void Problem10872()
+        {
+            var num = int.Parse(Console.ReadLine());
+            long result = 1;
+            for (int i = 1; i <= num; i++)
+            {
+                result *= i;
+            }
+            Console.WriteLine(result);
+        }
+
+        public static void Problem24723()
+        {
+            var num = int.Parse(Console.ReadLine());
+            var result = 1;
+            for (int i = 0; i < num; i++)
+            {
+                result *= 2;
+            }
+
+            Console.WriteLine(result);
+        }
+
+        public static void Problem15439()
+        {
+            var nums = int.Parse(Console.ReadLine());
+            Console.WriteLine(nums * (nums - 1));
+        }
+    }
+}
+
 // 백준 14단계, 집합과 맵
 namespace CodingTest.Baekjon.Level14
 {
