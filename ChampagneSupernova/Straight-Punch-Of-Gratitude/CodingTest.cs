@@ -3,11 +3,158 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+
+
 // 백준 19단계, 조합론
+namespace CodingTest.Baekjon.Level21
+{
+    public static class Day241021
+    {
+        public static void Problem25501()
+        {
+            var number = int.Parse(Console.ReadLine());
+            var results = new string[number];
+            var count = 0;
+
+            for (int i = 0; i < number; i++)
+            {
+                count = 0;
+                var text = Console.ReadLine();
+                results[i] = $"{c(text, 0, text.Length - 1)} {count}";
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var a in results)
+            {
+                sw.WriteLine(a);
+            }
+
+            int c(string text, int a, int b)
+            {
+                count++;
+                if (a >= b)
+                    return 1;
+                else if (text[a] != text[b])
+                    return 0;
+
+                return c(text, a + 1, b - 1);
+            }
+        }
+
+        public static void Problem10870()
+        {
+            var number = int.Parse(Console.ReadLine());
+
+            if (number == 0)
+                Console.WriteLine(0);
+            else
+                Console.WriteLine(zz(0, 1, number, 1));
+
+            int zz(int num1, int num2, int index, int i)
+            {
+                if (index == i)
+                {
+                    return num2;
+                }
+                else
+                {
+                    return zz(num2, num1 + num2, index, i + 1);
+                }
+
+            }
+        }
+
+        public static void Problem27433()
+        {
+            var number = int.Parse(Console.ReadLine());
+            Console.WriteLine(Factorial(1, number));
+
+            long Factorial(long amount, long index)
+            {
+                if (index == 0)
+                    return amount;
+                else
+                    return Factorial(amount * index, index - 1);
+            }
+        }
+    }
+}
 namespace CodingTest.Baekjon.Level19
 {
+    public static class Day241021
+    {
+        public static void Problem1010()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var results = new long[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                var s = Console.ReadLine().Split();
+                int n = int.Parse(s[0]);
+                int m = int.Parse(s[1]);
+
+                int a = 1;
+                int b = 1;
+
+                for (int j = 0; j < m - n; j++)
+                {
+                    a *= m - j;
+                    b *= 1 + j;
+
+                    var num = GCDWithEuclidean(a, b);
+                    if (num != 1)
+                    {
+                        a /= num;
+                        b /= num;
+                    }
+                }
+
+                results[i] = a / b;
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var a in results)
+            {
+                sw.WriteLine(a);
+            }
+
+            int GCDWithEuclidean(int n0, int n1)
+            {
+                while (n0 % n1 != 0)
+                {
+                    var temp = n0;
+                    n0 = n1;
+                    n1 = temp % n1;
+                }
+
+                return n1;
+            }
+        }
+
+        public static void Problem11050()
+        {
+            string[] s = Console.ReadLine().Split();
+            int n = int.Parse(s[0]);
+            int k = int.Parse(s[1]);
+
+            long a = 1;
+            long b = 1;
+
+            for (int i = 0; i < k; i++)
+            {
+                a *= n - i;
+                b *= k - i;
+            }
+
+            Console.WriteLine(a / b);
+        }
+    }
+
     public static class Day241019
     {
+
         public static void Problem10872()
         {
             var num = int.Parse(Console.ReadLine());
