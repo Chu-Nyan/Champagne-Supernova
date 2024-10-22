@@ -3,12 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
-
-
 // 백준 19단계, 조합론
 namespace CodingTest.Baekjon.Level21
 {
+    public static class Day241022
+    {
+        public static void Problem24060()
+        {
+            var terms = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var nums = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var temp = new int[nums.Length];
+            var count = 0;
+            var result = -1;
+            S(nums, temp, 0, nums.Length - 1);
+            Console.WriteLine(result);
+
+            void S(int[] ints, int[] temp, int left, int right)
+            {
+                if (left < right && result == -1)
+                {
+                    var mid = (left + right) / 2;
+                    S(ints, temp, left, mid);
+                    S(ints, temp, mid + 1, right);
+                    SS(ints, temp, left, mid + 1, right);
+                }
+            }
+
+            void SS(int[] ints, int[] temp, int left, int mid, int right)
+            {
+                var l = left;
+                var m = mid;
+                var r = right;
+                var index = l;
+
+                while (index <= r)
+                {
+                    count++;
+                    if (m > right || l < mid && ints[l] <= ints[m])
+                        temp[index++] = ints[l++];
+                    else
+                        temp[index++] = ints[m++];
+
+                    if (count == terms[1])
+                        result = temp[index - 1];
+                }
+
+                for (int i = left; i <= right; i++)
+                    ints[i] = temp[i];
+            }
+        }
+    }
+
     public static class Day241021
     {
         public static void Problem25501()
