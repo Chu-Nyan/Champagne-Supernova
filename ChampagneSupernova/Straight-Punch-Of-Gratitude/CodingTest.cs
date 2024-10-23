@@ -3,7 +3,293 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-// 백준 19단계, 조합론
+namespace CodingTest.Baekjon.Level23
+{
+    public static class Day241023
+    {
+        public static void Problem15649()
+        {
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var hashset = new HashSet<int>();
+            var sb = new StringBuilder();
+
+            for (int i = 1; i <= arr[0]; i++)
+            {
+                hashset.Add(i);
+                asd(i.ToString(), 1);
+                hashset.Remove(i);
+            }
+
+            void asd(string text, int count)
+            {
+                if (count == arr[1])
+                {
+                    sb.AppendLine(text);
+                    return;
+                }
+
+                for (int i = 1; i <= arr[0]; i++)
+                {
+                    if (hashset.Contains(i) == true)
+                        continue;
+
+                    hashset.Add(i);
+                    asd($"{text} {i}", count + 1);
+                    hashset.Remove(i);
+                }
+            }
+
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem1927()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var heap = new int[count + 1];
+            var size = 0;
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < count; i++)
+            {
+                var input = int.Parse(Console.ReadLine());
+                if (input == 0)
+                {
+                    sb.AppendLine(size == 0 ? 0.ToString() : Dequeue().ToString());
+                }
+                else
+                {
+                    Enqueue(input);
+                }
+            }
+
+            Console.WriteLine(sb);
+
+            void Enqueue(int number)
+            {
+                size++;
+                var i = size;
+                while (i > 1 && number < heap[i >> 1])
+                {
+                    heap[i] = heap[i >> 1];
+                    i >>= 1;
+                }
+
+                heap[i] = number;
+            }
+
+            int Dequeue()
+            {
+                var output = heap[1];
+                heap[1] = heap[size];
+                heap[size] = 0;
+                var startIndex = 1;
+                var leftIndex = 2;
+                int child;
+                size--;
+
+                while (leftIndex <= size)
+                {
+                    if (leftIndex == size)
+                    {
+                        child = leftIndex;
+                    }
+                    else
+                    {
+                        int rightIndex = leftIndex + 1;
+                        child = heap[leftIndex] < heap[rightIndex] ? leftIndex : rightIndex;
+                    }
+
+                    if (heap[startIndex] > heap[child])
+                    {
+                        var value = heap[startIndex];
+                        heap[startIndex] = heap[child];
+                        heap[child] = value;
+                        startIndex = child;
+                        leftIndex = child << 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                return output;
+            }
+        }
+
+        public static void Problem2775()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var asd = new int[16, 15];
+            for (int y = 0; y < 15; y++)
+            {
+                asd[1, y] = 1;
+            }
+            for (int x = 1; x < 16; x++)
+            {
+                asd[x, 0] = x;
+            }
+
+            for (int x = 2; x < 16; x++)
+            {
+                for (int y = 1; y < 15; y++)
+                {
+                    asd[x, y] = asd[x - 1, y] + asd[x, y - 1];
+                }
+            }
+
+            for (int j = 0; j < count; j++)
+            {
+                int k = int.Parse(Console.ReadLine()); // 층
+                int n = int.Parse(Console.ReadLine()); // 호
+                Console.WriteLine(asd[n, k]);
+            }
+        }
+
+        public static void Problem11726()
+        {
+            var n = int.Parse(Console.ReadLine());
+            var asded = new int[n + 2];
+
+            asded[1] = 1;
+            asded[2] = 2;
+
+            for (int i = 3; i <= n; i++)
+            {
+                asded[i] = (asded[i - 1] + asded[i - 2]) % 10007;
+            }
+
+            Console.WriteLine(asded[n]);
+        }
+
+        public static void Problem9095()
+        {
+            var n = int.Parse(Console.ReadLine());
+            var count = 0;
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < n; i++)
+            {
+                count = 0;
+                var number = int.Parse(Console.ReadLine());
+                asd(0, number);
+                sb.AppendLine(count.ToString());
+            }
+
+            Console.WriteLine(sb);
+
+            void asd(int sum, int target)
+            {
+                if (sum > target)
+                    return;
+                if (sum == target)
+                {
+                    count++;
+                    return;
+                }
+
+                asd(sum + 1, target);
+                asd(sum + 2, target);
+                asd(sum + 3, target);
+            }
+        }
+
+        public static void Problem1463()
+        {
+            var n = int.Parse(Console.ReadLine());
+            var minValue = int.MaxValue;
+            var memo = new int[n + 1];
+            for (int i = 0; i <= n; i++)
+            {
+                memo[i] = -1;
+            }
+
+            numbe(n, 0);
+            Console.WriteLine(minValue);
+
+            void numbe(int n, int count)
+            {
+                if (minValue < count)
+                    return;
+                if (memo[n] < count && memo[n] != -1)
+                    return;
+
+                if (n == 1)
+                {
+                    minValue = Math.Min(minValue, count);
+                    return;
+                }
+
+                memo[n] = count;
+                if (n % 3 == 0)
+                    numbe(n / 3, count + 1);
+                if (n % 2 == 0)
+                    numbe(n / 2, count + 1);
+
+                numbe(n - 1, count + 1);
+            }
+        }
+
+        public static void Problem11053()
+        {
+            var index = int.Parse(Console.ReadLine());
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var dp = new int[index];
+            var best = int.MinValue;
+
+            for (int i = 0; i < index; i++)
+            {
+                dp[i] = 1;
+
+                for (int j = 0; j < i; j++)
+                {
+                    if (arr[j] < arr[i])
+                    {
+                        dp[i] = dp[j] + 1;
+                    }
+                }
+
+                best = Math.Max(best, dp[i]);
+            }
+
+            Console.WriteLine(best);
+        }
+
+        public static void Problem24416()
+        {
+            var number = int.Parse(Console.ReadLine());
+
+            var c1 = 0;
+            var c2 = 0;
+            fib(number);
+            fib2(number);
+
+            Console.WriteLine(c1 + " " + c2);
+
+            int fib(int n)
+            {
+                if (n == 1 || n == 2)
+                {
+                    c1++;
+                    return 1;
+                }
+
+                return (fib(n - 1) + fib(n - 2));
+            }
+
+            int fib2(int n)
+            {
+                for (int i = 3; i <= n; i++)
+                {
+                    c2++;
+                }
+                return 1;
+            }
+        }
+
+    }
+}
+
 namespace CodingTest.Baekjon.Level21
 {
     public static class Day241022
@@ -125,6 +411,8 @@ namespace CodingTest.Baekjon.Level21
         }
     }
 }
+
+// 백준 19단계, 조합론
 namespace CodingTest.Baekjon.Level19
 {
     public static class Day241021

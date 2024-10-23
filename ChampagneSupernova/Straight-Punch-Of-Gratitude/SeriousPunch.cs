@@ -42,7 +42,6 @@ namespace asd
     }
 }
 
-
 public class SeriousPunch241021
 {
     public int solution(int n, int[,] computers)
