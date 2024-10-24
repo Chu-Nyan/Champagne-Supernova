@@ -3,6 +3,153 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+namespace CodingTest.Baekjon
+{
+    public static class Day241024
+    {
+        public static void Problem1932()
+        {
+            var count = int.Parse(Console.ReadLine()) - 1;
+            var values = new List<int[]>(); //  y x
+            var dp = new int[count + 1, count + 1]; // y x
+
+            for (int i = 0; i <= count; i++)
+            {
+                values.Add(Array.ConvertAll(Console.ReadLine().Split(), int.Parse));
+            }
+
+            dp[0, 0] = values[0][0];
+
+            for (int y = 1; y <= count; y++)
+            {
+                for (int x = 0; x <= y; x++)
+                {
+                    if (x == 0)
+                        dp[y, x] = dp[y - 1, x] + values[y][x];
+                    else if (x == y)
+                        dp[y, x] = dp[y - 1, x - 1] + values[y][x];
+                    else
+                        dp[y, x] = Math.Max(dp[y - 1, x - 1], dp[y - 1, x]) + values[y][x];
+                }
+            }
+            var result = int.MinValue;
+            for (int i = 0; i < count; i++)
+            {
+                result = Math.Max(result, dp[count, i]);
+            }
+
+            Console.WriteLine(result);
+
+
+
+            void asd(int y, int x, int sum)
+            {
+                if (y == count)
+                {
+                    result = Math.Max(sum, result);
+                    return;
+                }
+
+                var nextY = y + 1;
+                var rightX = x + 1;
+                if (x < count && dp[nextY, rightX] < sum + values[nextY][rightX])
+                {
+                    dp[nextY, rightX] = sum + values[nextY][rightX];
+                    asd(nextY, rightX, dp[nextY, rightX]);
+                }
+
+                if (dp[nextY, x] < sum + values[nextY][x])
+                {
+                    dp[nextY, x] = sum + values[nextY][x];
+                    asd(nextY, x, dp[nextY, x]);
+                }
+            }
+        }
+
+        public static void Problem1149()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var values = new List<int[]>();
+            var dp = new int[count, 3];
+
+            for (int i = 0; i < count; i++)
+            {
+                values.Add(Array.ConvertAll(Console.ReadLine().Split(), int.Parse));
+            }
+            dp[0, 0] = values[0][0];
+            dp[0, 1] = values[0][1];
+            dp[0, 2] = values[0][2];
+
+
+            for (int i = 1; i < count; i++)
+            {
+                dp[i, 0] = Math.Min(dp[i - 1, 1], dp[i - 1, 2]) + values[i][0];
+                dp[i, 1] = Math.Min(dp[i - 1, 2], dp[i - 1, 0]) + values[i][1];
+                dp[i, 2] = Math.Min(dp[i - 1, 1], dp[i - 1, 0]) + values[i][2];
+            }
+
+            var best = int.MaxValue;
+            for (int i = 0; i < 3; i++)
+            {
+                best = Math.Min(dp[count - 1, i], best);
+            }
+
+            Console.WriteLine(best);
+
+        }
+
+        public static void Problem2579()
+        {
+            var floor = int.Parse(Console.ReadLine());
+            var scores = new int[floor + 1];
+            var maxScore = 0;
+            var dic = new Dictionary<int, int[]>();
+            for (int i = 1; i <= floor; i++)
+            {
+                scores[i] = int.Parse(Console.ReadLine());
+            }
+
+            asd(0, 0, -1);
+            Console.WriteLine(maxScore);
+
+            void asd(int sum, int index, int combo)
+            {
+                if (floor < index)
+                    return;
+
+                sum += scores[index];
+
+                if (floor == index)
+                {
+                    maxScore = Math.Max(maxScore, sum);
+                    return;
+                }
+
+                if (dic.ContainsKey(index) == false)
+                {
+                    dic.Add(index, [combo, sum]);
+                }
+                else
+                {
+                    if (dic[index][combo] >= sum)
+                        return;
+                    else
+                    {
+                        dic[index][combo] = sum;
+                    }
+                }
+
+
+                if (combo < 1)
+                {
+                    asd(sum, index + 1, combo + 1);
+                }
+
+                asd(sum, index + 2, 0);
+            }
+        }
+    }
+}
 namespace CodingTest.Baekjon.Level23
 {
     public static class Day241023
