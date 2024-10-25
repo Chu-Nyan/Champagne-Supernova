@@ -1,9 +1,14 @@
-﻿namespace Sol6;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using System.Linq;
 
-class Solution
-{
-    //public static void Main(string[] args)
-    //{
+//namespace Sol6;
 
-    //}
-}
+//class Solution
+//{
+//    public static void Main(string[] args)
+//    {
+
+//    }
+//}

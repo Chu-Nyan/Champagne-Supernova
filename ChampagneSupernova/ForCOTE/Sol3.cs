@@ -1,4 +1,9 @@
-﻿namespace Sol3;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using System.Linq;
+
+//namespace Sol3;
 
 //class Solution
 //{

@@ -1,12 +1,17 @@
-﻿using CodingTest.Baekjoon.Level7;
+﻿using CodingTest.Baekjon;
+using Programmers;
+using System;
 
 namespace ChampagneSupernova
 {
-    public class Program
+    public class Programm
     {
-        static void Main(string[] args)
-        {
-            Day240829.Problem10798();
-        }
+        //static void Main(string[] args)
+        //{
+        //    while (true)
+        //    {
+        //        Day241025.Problem1026();
+        //    }
+        //}
     }
 }
