@@ -5,6 +5,295 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public static class Day241025
+    {
+        public static void Problem1026()
+        {
+            var asd = int.Parse(Console.ReadLine());
+            var aArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var bArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Array.Sort(aArr);
+            Array.Sort(bArr, (a,b) => { return b.CompareTo(a); }) ;
+            var sum = 0;
+            for (int i = 0; i < asd; i++)
+            {
+                sum += aArr[i] * bArr[i];
+            }
+
+            Console.WriteLine(sum);
+        }
+
+        public static void Problem1541()
+        {
+            var arr = Console.ReadLine().Split('-');
+            int sum = 0;
+            var pluses = Array.ConvertAll(arr[0].Split('+'), int.Parse);
+
+            for (int i = 0; i < pluses.Length; i++)
+            {
+                sum += pluses[i];
+            }
+
+            for (int i = 1; i < arr.Length; i++)
+            {
+                var nums = Array.ConvertAll(arr[i].Split('+'), int.Parse);
+
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    sum -= nums[j];
+                }
+            }
+
+            Console.WriteLine(sum);
+
+        }
+
+        public static void Problem1931()
+        {
+            var asd = int.Parse(Console.ReadLine());
+            var arr = new List<long[]>(asd);
+            var result = 0;
+            long time = 0;
+
+            for (int i = 0; i < asd; i++)
+            {
+                arr.Add(Array.ConvertAll(Console.ReadLine().Split(), long.Parse));
+            }
+            arr.Sort((x, y) =>
+            {
+                var a = x[1].CompareTo(y[1]);
+                if (a == 0)
+                {
+                    a = x[0].CompareTo(y[0]);
+                }
+                return a;
+            });
+
+            for (int i = 0; i < arr.Count; i++)
+            {
+                if (arr[i][0] >= time)
+                {
+                    time = arr[i][1];
+                    result++;
+                }
+            }
+
+            Console.WriteLine(result);
+
+        }
+
+        public static void Problem11047()
+        {
+            var inputs = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var values = new int[inputs[0]];
+            var coin = 0;
+            for (int i = 0; i < values.Length; i++)
+            {
+                values[i] = int.Parse(Console.ReadLine());
+            }
+
+            for (int i = values.Length - 1; i >= 0; i--)
+            {
+                if (values[i] > inputs[1])
+                    continue;
+
+
+                coin += inputs[1] / values[i];
+                inputs[1] = inputs[1] % values[i];
+
+                if (inputs[1] == 0)
+                    break;
+            }
+
+            Console.WriteLine(coin);
+
+        }
+
+        public static void Problem11399()
+        {
+            var inputCase = int.Parse(Console.ReadLine());
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Array.Sort(arr);
+            var sum = 0;
+            var beforeTime = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sum += beforeTime + arr[i];
+                beforeTime += arr[i];
+            }
+            Console.WriteLine(sum);
+        }
+
+        public static void Problem4673()
+        {
+            var numbers = new int[10001];
+
+            for (int i = 1; i <= 10000; i++)
+            {
+                var count = i.ToString().Length;
+                var sum = i;
+                var number = i;
+                for (int j = 0; j < count; j++)
+                {
+                    sum += number % 10;
+                    number /= 10;
+                }
+
+                if (sum <= 10000)
+                {
+                    numbers[sum] = 1;
+                }
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            for (int i = 1; i <= 10000; i++)
+            {
+                if (numbers[i] == 0)
+                {
+                    sw.WriteLine(i);
+                }
+            }
+        }
+
+        public static void Problem9012()
+        {
+            var inputCase = int.Parse(Console.ReadLine());
+            var stack = new Queue<int>();
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < inputCase; i++)
+            {
+                var text = Console.ReadLine();
+                var isResult = "YES";
+                stack.Clear();
+                for (int j = 0; j < text.Length; j++)
+                {
+                    if (text[j] == '(')
+                    {
+                        stack.Enqueue(j);
+                    }
+                    else
+                    {
+                        if (stack.TryDequeue(out var a) == false)
+                        {
+                            isResult = "NO";
+                            break;
+                        }
+                    }
+                }
+
+                sb.AppendLine(stack.Count == 0 ? isResult : "NO");
+            }
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem2156()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var scores = new int[count + 3];
+            for (int i = 1; i <= count; i++)
+            {
+                scores[i] = int.Parse(Console.ReadLine());
+            }
+
+            var dp = new int[count + 3];
+            dp[1] = scores[1];
+            dp[2] = scores[2] + dp[1];
+            dp[3] = Math.Max(scores[3] + dp[1], dp[2]);
+            dp[3] = Math.Max(dp[3], scores[2] + scores[3]);
+            var result = int.MinValue;
+
+            for (int i = 0; i < 4; i++)
+            {
+                result = Math.Max(result, dp[i]);
+            }
+
+            for (int i = 4; i <= count; i++)
+            {
+                dp[i] = Math.Max(dp[i - 3] + scores[i - 1] + scores[i], dp[i - 2] + scores[i]);
+                dp[i] = Math.Max(dp[i], dp[i - 1]);
+                result = Math.Max(result, dp[i]);
+            }
+
+            Console.WriteLine(result);
+
+        }
+
+        public static void Problem2748()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var dp1 = new long[count + 3];
+            dp1[1] = 1;
+            dp1[2] = 1;
+
+            for (int i = 3; i <= count; i++)
+            {
+                dp1[i] = dp1[i - 1] + dp1[i - 2];
+            }
+
+            Console.WriteLine(dp1[count]);
+        }
+
+        public static void Problem11727()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var dp1 = new int[count + 3];
+            dp1[1] = 1;
+            dp1[2] = 3;
+            for (int i = 3; i <= count; i++)
+            {
+                dp1[i] = (dp1[i - 1] + dp1[i - 2] * 2) % 10007;
+            }
+            Console.WriteLine(dp1[count]);
+        }
+
+        public static void Problem9461()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var dp = new List<long>() { 1, 1, 1, 2, 2, 3, 4, 5, 7, 9 };
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < count; i++)
+            {
+                var number = int.Parse(Console.ReadLine());
+
+                var index = dp.Count - 1;
+                while (number > dp.Count)
+                {
+                    dp.Add(dp[index] + dp[index - 4]);
+                    index++;
+                }
+
+                sb.AppendLine(dp[number - 1].ToString());
+            }
+
+            Console.WriteLine(sb);
+        }
+
+        public static void Problem1912()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var dp = new int[count];
+            var result = arr[0];
+            dp[0] = arr[0];
+
+            for (int i = 1; i < count; i++)
+            {
+                dp[i] = arr[i] + dp[i - 1];
+                if (dp[i] < arr[i])
+                {
+                    dp[i] = arr[i];
+                }
+
+                result = Math.Max(dp[i], result);
+            }
+
+            Console.WriteLine(result);
+
+        }
+    }
+
     public static class Day241024
     {
         public static void Problem1932()
