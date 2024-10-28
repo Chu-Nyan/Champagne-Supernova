@@ -5,6 +5,104 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public static class Day241028
+    {
+        public static void Problem2485()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var trees = new int[count];
+            for (int i = 0; i < count; i++)
+            {
+                trees[i] = int.Parse(Console.ReadLine());
+            }
+
+            var minDistance = trees[1] - trees[0];
+            var distance = new int[count];
+
+            for (int i = 1; i < count; i++)
+            {
+                var dis = trees[i] - trees[i - 1];
+                distance[i] = dis;
+                minDistance = LCD(minDistance, dis);
+            }
+
+            var result = 0;
+
+            for (int i = 1; i < count; i++)
+            {
+                result += (distance[i] - minDistance) / minDistance;
+            }
+
+            Console.WriteLine(result);
+
+            static int LCD(int max, int min)
+            {
+                while (max % min != 0)
+                {
+                    var temp = max;
+                    max = min;
+                    min = temp % min;
+                }
+
+                return min;
+            }
+        }
+
+        public static void Problem1735()
+        {
+            var arr1 = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var arr2 = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var (n0, n1) = arr1[1] > arr2[1] ? (arr1[1], arr2[1]) : (arr1[1], arr2[1]);
+
+            var parents = arr1[1] * arr2[1] / LCD(n0, n1);
+            var child = arr1[0] * (parents / arr1[1]) + arr2[0] * (parents / arr2[1]);
+
+            (n0, n1) = parents > child ? (parents, child) : (child, parents);
+
+            var lcd = LCD(n0, n1);
+            Console.WriteLine($"{child / lcd} {parents / lcd}");
+
+            static int LCD(int max, int min)
+            {
+                while (max % min != 0)
+                {
+                    var temp = max;
+                    max = min;
+                    min = temp % min;
+                }
+
+                return min;
+            }
+        }
+
+        public static void Problem25192()
+        {
+            var logs = int.Parse(Console.ReadLine());
+            var greetingUser = new HashSet<string>();
+            var answer = 0;
+
+            for (int i = 0; i < logs; i++)
+            {
+                var log = Console.ReadLine();
+                if (log == "ENTER")
+                    greetingUser.Clear();
+                else if (greetingUser.Add(log) == true)
+                    answer++;
+            }
+
+            Console.WriteLine(answer);
+        }
+
+        public static void Porblem1037()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Array.Sort(arr);
+
+            Console.WriteLine(arr[0] * arr[arr.Length - 1]);
+        }
+    }
+
     public static class Day241025
     {
         public static void Problem1026()
@@ -13,7 +111,7 @@ namespace CodingTest.Baekjon
             var aArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             var bArr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             Array.Sort(aArr);
-            Array.Sort(bArr, (a,b) => { return b.CompareTo(a); }) ;
+            Array.Sort(bArr, (a, b) => { return b.CompareTo(a); });
             var sum = 0;
             for (int i = 0; i < asd; i++)
             {
