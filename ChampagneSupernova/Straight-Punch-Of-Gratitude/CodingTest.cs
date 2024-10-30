@@ -5,6 +5,95 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public static class Day241030
+    {
+        public static void Problem2447()
+        {
+            var num = int.Parse(Console.ReadLine());
+
+            var texts = new string[num];
+            for (int i = 0; i < texts.Length; i++)
+            {
+                texts[i] = "*".PadRight(num, '*');
+            }
+
+            Remove(0, 0, num);
+
+            void Remove(int minX, int minY, int range)
+            {
+                int removeAmount = range / 3;
+                int removeX = minX + removeAmount;
+                int removeY = minY + removeAmount;
+
+                for (int i = 0; i < removeAmount; i++)
+                {
+                    texts[removeY + i] = texts[removeY + i].Remove(removeX, removeAmount);
+                    texts[removeY + i] = texts[removeY + i].Insert(removeX, " ".PadRight(removeAmount));
+                }
+
+                if (removeAmount != 1)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        for (int x = 0; x < 3; x++)
+                        {
+                            if (y == 1 && x == 1)
+                                continue;
+
+                            Remove(minX + removeAmount * x, minY + removeAmount * y, removeAmount);
+                        }
+                    }
+                }
+            }
+
+            foreach (var item in texts)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public static void Problem20920()
+        {
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var texts = new string[arr[0]];
+            for (int i = 0; i < arr[0]; i++)
+            {
+                texts[i] = Console.ReadLine();
+            }
+
+            var dic = new Dictionary<string, int>();
+            var list = new List<string>();
+            for (int i = 0; i < arr[0]; i++)
+            {
+                if (texts[i].Length < arr[1])
+                    continue;
+
+                if (dic.TryAdd(texts[i], 1) == false)
+                    dic[texts[i]]++;
+                else
+                    list.Add(texts[i]);
+            }
+
+            list.Sort((a, b) =>
+            {
+                var result = dic[b] - dic[a];
+                if (result == 0)
+                    result = b.Length - a.Length;
+                if (result == 0)
+                    result = a.CompareTo(b);
+
+                return result;
+            });
+
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var item in list)
+            {
+                sw.WriteLine(item);
+            }
+        }
+    }
+
     public static class Day241029
     {
         public static void Problem2108()
@@ -53,7 +142,7 @@ namespace CodingTest.Baekjon
                 sum += arr[i];
             }
 
-            Console.WriteLine((int)(Math.Round((double)sum / count,MidpointRounding.AwayFromZero)));
+            Console.WriteLine((int)(Math.Round((double)sum / count, MidpointRounding.AwayFromZero)));
             Console.WriteLine(arr[count / 2]);
             Console.WriteLine(waiting[1] == int.MaxValue ? waiting[0] : waiting[1]);
             Console.WriteLine(arr[count - 1] - arr[0]);
