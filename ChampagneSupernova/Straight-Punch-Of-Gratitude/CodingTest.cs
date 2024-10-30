@@ -5,6 +5,80 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public static class Day241029
+    {
+        public static void Problem2108()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var arr = new int[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            Array.Sort(arr);
+
+            int sum = 0;
+            var dic = new Dictionary<int, int>();
+            var waiting = new int[] { int.MaxValue, int.MaxValue };
+            var maxCount = 0;
+
+            for (int i = 0; i < count; i++)
+            {
+                if (dic.ContainsKey(arr[i]) == false)
+                    dic.Add(arr[i], 1);
+                else
+                    dic[arr[i]]++;
+
+                if (maxCount == dic[arr[i]])
+                {
+                    var number = arr[i];
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (waiting[j] > number)
+                        {
+                            var temp = waiting[j];
+                            waiting[j] = number;
+                            number = temp;
+                        }
+                    }
+                }
+                else if (maxCount < dic[arr[i]])
+                {
+                    maxCount = dic[arr[i]];
+                    waiting[0] = arr[i];
+                    waiting[1] = int.MaxValue;
+                }
+
+                sum += arr[i];
+            }
+
+            Console.WriteLine((int)(Math.Round((double)sum / count,MidpointRounding.AwayFromZero)));
+            Console.WriteLine(arr[count / 2]);
+            Console.WriteLine(waiting[1] == int.MaxValue ? waiting[0] : waiting[1]);
+            Console.WriteLine(arr[count - 1] - arr[0]);
+        }
+
+        public static void Problem26069()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var hash = new HashSet<string>() { "ChongChong" };
+
+            for (int i = 0; i < count; i++)
+            {
+                var log = Console.ReadLine().Split();
+
+                for (int j = 0; j < 2; j++)
+                {
+                    if (hash.Contains(log[j]) == true)
+                        hash.Add(log[1 - j]);
+                }
+            }
+
+            Console.WriteLine(hash.Count);
+        }
+    }
+
     public static class Day241028
     {
         public static void Problem2485()
