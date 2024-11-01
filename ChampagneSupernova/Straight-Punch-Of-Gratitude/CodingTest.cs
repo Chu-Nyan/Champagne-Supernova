@@ -5,6 +5,87 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public static class Day241031
+    {
+        public static void Problem15652()
+        {
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var sb = new StringBuilder();
+
+            for (int i = 1; i <= arr[0]; i++)
+            {
+                asd(1, i, $"{i}");
+            }
+            Console.WriteLine(sb.ToString());
+
+            void asd(int index, int last, string text)
+            {
+                if (index == arr[1])
+                {
+                    sb.AppendLine(text);
+                    return;
+                }
+
+                for (int i = last; i <= arr[0]; i++)
+                {
+                    asd(index + 1, i, $"{text} {i}");
+                }
+            }
+        }
+
+        public static void Problem15651()
+        {
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var sb = new StringBuilder();
+
+            for (int i = 1; i <= arr[0]; i++)
+            {
+                asd(1, $"{i}");
+            }
+            Console.WriteLine(sb.ToString());
+
+            void asd(int index, string text)
+            {
+                if (index == arr[1])
+                {
+                    sb.AppendLine(text);
+                    return;
+                }
+
+                for (int i = 1; i <= arr[0]; i++)
+                {
+                    asd(index + 1, $"{text} {i}");
+                }
+            }
+        }
+
+        public static void Problem15650()
+        {
+            var arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var sb = new StringBuilder();
+
+            for (int i = 1; i <= arr[0]; i++)
+            {
+                asd(1, i, $"{i}");
+            }
+            Console.WriteLine(sb.ToString());
+
+            void asd(int index, int last, string text)
+            {
+                if (index == arr[1])
+                {
+                    sb.AppendLine(text);
+                    return;
+                }
+
+                for (int i = last + 1; i <= arr[0]; i++)
+                {
+                    asd(index + 1, i, $"{text} {i}");
+                }
+            }
+        }
+    }
+
     public static class Day241030
     {
         public static void Problem2447()
@@ -27,6 +108,7 @@ namespace CodingTest.Baekjon
 
                 for (int i = 0; i < removeAmount; i++)
                 {
+
                     texts[removeY + i] = texts[removeY + i].Remove(removeX, removeAmount);
                     texts[removeY + i] = texts[removeY + i].Insert(removeX, " ".PadRight(removeAmount));
                 }
@@ -46,9 +128,10 @@ namespace CodingTest.Baekjon
                 }
             }
 
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
             foreach (var item in texts)
             {
-                Console.WriteLine(item);
+                sw.WriteLine(item);
             }
         }
 
