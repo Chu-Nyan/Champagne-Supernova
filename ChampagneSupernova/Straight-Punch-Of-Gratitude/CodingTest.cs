@@ -5,6 +5,73 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241124
+    {
+        public static void Problem1929()
+        {
+            var mn = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var numbers = new bool[mn[1] + 1];
+            numbers[1] = true;
+
+            for (int i = 2; i <= mn[1]; i++)
+            {
+                if (numbers[i] == true)
+                    continue;
+
+                var targetNumber = i;
+                while (true)
+                {
+                    targetNumber += i;
+                    if (targetNumber > mn[1])
+                        break;
+
+                    numbers[targetNumber] = true;
+                }
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            for (int i = mn[0]; i <= mn[1]; i++)
+            {
+                if (numbers[i] == false)
+                    sw.WriteLine(i);
+            }
+        }
+
+        public static void Problem4134()
+        {
+            var c = int.Parse(Console.ReadLine());
+            var input = new long[c];
+            for (int i = 0; i < c; i++)
+            {
+                input[i] = long.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < c; i++)
+            {
+                if (input[i] < 2)
+                    input[i] = 2;
+
+                var targetNum = Math.Sqrt(input[i]);
+
+                for (int j = 2; j <= targetNum; j++)
+                {
+                    if (input[i] % j == 0)
+                    {
+                        input[i]++;
+                        targetNum = Math.Sqrt(input[i]);
+                        j = 1;
+                    }
+                }
+            }
+
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            foreach (var item in input)
+            {
+                sw.WriteLine(item);
+            }
+        }
+    }
+
     public static class Day241031
     {
         public static void Problem15652()
@@ -5285,4 +5352,5 @@ namespace CodingTest.DonutAndLeafGraph
             Before = 0;
         }
     }
+
 }
