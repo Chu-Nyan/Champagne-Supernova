@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
-    public class Day241124
+    public class Day241125
     {
         public static void Problem1929()
         {
