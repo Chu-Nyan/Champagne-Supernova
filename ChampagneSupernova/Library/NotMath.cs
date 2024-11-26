@@ -18,5 +18,22 @@
         {
             return n0 * n1 / GCDWithEuclidean(n0, n1);
         }
+
+        public static bool[] GetPrimeNumber()
+        {
+            var numbers = new bool[1000001];
+            for (int i = 2; i < numbers.Length; i++)
+            {
+                if (numbers[i] == false)
+                    continue;
+
+                for (int num = i + i; num < numbers.Length; num += i)
+                {
+                    numbers[num] = true;
+                }
+            }
+
+            return numbers;
+        }
     }
 }
