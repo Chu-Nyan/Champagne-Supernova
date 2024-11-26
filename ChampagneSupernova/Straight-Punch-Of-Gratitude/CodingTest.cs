@@ -5,6 +5,78 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241126
+    {
+        public static void Problem17103()
+        {
+            var t = int.Parse(Console.ReadLine());
+            var numbers = new bool[1000001];
+            for (int i = 2; i < numbers.Length; i++)
+            {
+                if (numbers[i] == false)
+                    continue;
+
+                for (int num = i + i; num < numbers.Length; num += i)
+                {
+                    numbers[num] = true;
+                }
+            }
+
+            for (int i = 0; i < t; i++)
+            {
+                var n = int.Parse(Console.ReadLine());
+                var count = 0;
+
+                for (int j = 2; j <= n * 0.5f; j++)
+                {
+                    if (numbers[j] == false && numbers[n - j] == false)
+                        count++;
+                }
+
+                Console.WriteLine(count);
+            }
+        }
+
+        public static void Problem4948()
+        {
+            var numbers = new bool[123456 * 2 + 1];
+            numbers[1] = true;
+
+            for (int i = 2; i < numbers.Length; i++)
+            {
+                if (numbers[i] == true)
+                    continue;
+
+                var targetNumber = i;
+                while (true)
+                {
+                    targetNumber += i;
+                    if (targetNumber >= numbers.Length)
+                        break;
+
+                    numbers[targetNumber] = true;
+                }
+            }
+
+            while (true)
+            {
+                var input = int.Parse(Console.ReadLine());
+                if (input == 0)
+                    break;
+                var goal = input * 2;
+                var answer = 0;
+
+                for (int i = input + 1; i <= goal; i++)
+                {
+                    if (numbers[i] == false)
+                        answer++;
+                }
+
+                Console.WriteLine(answer);
+            }
+        }
+    }
+
     public class Day241125
     {
         public static void Problem1929()
