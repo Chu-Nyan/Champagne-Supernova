@@ -5,6 +5,88 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241127
+    {
+        public static void Problem27278()
+        {
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            var stack = new Stack<int>();
+            var count = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < count; i++)
+            {
+                var nx = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+                switch (nx[0])
+                {
+                    case 1:
+                        One(nx[1]);
+                        break;
+                    case 2:
+                        Two();
+                        break;
+                    case 3:
+                        Three();
+                        break;
+                    case 4:
+                        Four();
+                        break;
+                    case 5:
+                    default:
+                        Five();
+                        break;
+                }
+            }
+
+            void One(int value)
+            {
+                stack.Push(value);
+            }
+
+            void Two()
+            {
+                if (stack.TryPop(out int value) == false)
+                    value = -1;
+
+                sw.WriteLine(value);
+            }
+
+            void Three()
+            {
+                sw.WriteLine(stack.Count);
+            }
+
+            void Four()
+            {
+                var output = 0;
+                if (stack.Count == 0)
+                    output = 1;
+
+                sw.WriteLine(output);
+            }
+
+            void Five()
+            {
+                if (stack.TryPeek(out int value) == false)
+                    value = -1;
+
+                sw.WriteLine(value);
+            }
+        }
+
+        public static void Problem13909()
+        {
+            var n = int.Parse(Console.ReadLine());
+            var result = 0;
+            for (int i = 1; i * i <= n; i++)
+            {
+                result++;
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+
     public class Day241126
     {
         public static void Problem17103()
