@@ -5,6 +5,71 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241129
+    {
+        public static void Problem18258()
+        {
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            var count = int.Parse(Console.ReadLine());
+            var queue = new Queue<int>();
+            var lastItem = 0;
+
+            for (int i = 0; i < count; i++)
+            {
+                var nx = Console.ReadLine().Split();
+                if (nx[0] == "push")
+                {
+                    queue.Enqueue(int.Parse(nx[1]));
+                    lastItem = int.Parse(nx[1]);
+                }
+                else if (nx[0] == "pop")
+                    sw.WriteLine(queue.TryDequeue(out var result) == false ? -1 : result);
+                else if (nx[0] == "front")
+                    sw.WriteLine(queue.TryPeek(out var result) == false ? -1 : result);
+                else if (nx[0] == "size")
+                    sw.WriteLine(queue.Count);
+                else if (nx[0] == "empty")
+                    sw.WriteLine(queue.Count == 0 ? 1 : 0);
+                else if (nx[0] == "back")
+                    sw.WriteLine(queue.Count == 0 ? -1 : lastItem);
+            }
+        }
+
+        public static void Problem12789()
+        {
+            var goal = int.Parse(Console.ReadLine());
+            var students = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var stack = new Stack<int>();
+            var currentQueue = 1;
+            var arrPivot = 0;
+
+            while (currentQueue <= goal)
+            {
+                if (arrPivot < goal && students[arrPivot] == currentQueue)
+                {
+                    arrPivot++;
+                    currentQueue++;
+                }
+                else if (stack.TryPeek(out var item) == true && item == currentQueue)
+                {
+                    stack.Pop();
+                    currentQueue++;
+                }
+                else if (arrPivot < goal)
+                {
+                    stack.Push(students[arrPivot]);
+                    arrPivot++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine(currentQueue - 1 == goal ? "Nice" : "Sad");
+        }
+    }
+
     public class Day241128
     {
         public static void Problem4949()
