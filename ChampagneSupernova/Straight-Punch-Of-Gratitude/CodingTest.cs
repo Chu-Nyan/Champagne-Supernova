@@ -5,6 +5,49 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241202
+    {
+        public static void Problem11866()
+        {
+            var nk = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var answer = new List<int>(nk[0]);
+            var stack = new Queue<int>();
+            for (int i = 1; i <= nk[0]; i++)
+            {
+                stack.Enqueue(i);
+            }
+
+            while (stack.Count > 0)
+            {
+                for (int i = 0; i < nk[1] - 1; i++)
+                {
+                    stack.Enqueue(stack.Dequeue());
+                }
+                answer.Add(stack.Dequeue());
+            }
+
+            Console.WriteLine($"<{string.Join(",", answer)}>");
+        }
+
+        public static void Problem2164()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var queue = new Queue<int>();
+            for (int i = 1; i <= count; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            while (queue.Count > 1)
+            {
+                queue.Dequeue();
+                queue.Enqueue(queue.Dequeue());
+            }
+
+            Console.WriteLine(queue.Dequeue());
+        }
+    }
+
     public class Day241129
     {
         public static void Problem18258()
