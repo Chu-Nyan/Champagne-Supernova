@@ -5,6 +5,54 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241203
+    {
+        public static void Porlbem28279()
+        {
+            using var sw = new System.IO.StreamWriter(Console.OpenStandardOutput());
+            var n = int.Parse(Console.ReadLine());
+            var list = new LinkedList<int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                var nx = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+                switch (nx[0])
+                {
+                    case 1:
+                        list.AddFirst(nx[1]);
+                        break;
+                    case 2:
+                        list.AddLast(nx[1]);
+                        break;
+                    case 3:
+                        sw.WriteLine($"{(list.Count > 0 ? list.First.Value : -1)}");
+                        if (list.Count > 0)
+                            list.RemoveFirst();
+                        break;
+                    case 4:
+                        sw.WriteLine($"{(list.Count > 0 ? list.Last.Value : -1)}");
+                        if (list.Count > 0)
+                            list.RemoveLast();
+                        break;
+                    case 5:
+                        sw.WriteLine($"{list.Count}");
+                        break;
+                    case 6:
+                        sw.WriteLine($"{(list.Count == 0 ? 1 : 0)}");
+                        break;
+                    case 7:
+                        sw.WriteLine($"{(list.Count > 0 ? list.First.Value : -1)}");
+                        break;
+                    case 8:
+                    default:
+                        sw.WriteLine($"{(list.Count > 0 ? list.Last.Value : -1)}");
+                        break;
+                }
+            }
+        }
+    }
+
     public class Day241202
     {
         public static void Problem11866()
