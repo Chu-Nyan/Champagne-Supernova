@@ -5,6 +5,43 @@ using System.Text;
 
 namespace CodingTest.Baekjon
 {
+    public class Day241204
+    {
+        public static void Problem4779()
+        {
+            var sb = new System.Text.StringBuilder();
+            var answer = new System.Text.StringBuilder();
+            while (true)
+            {
+                try
+                {
+                    var length = (int)Math.Pow(3, int.Parse(Console.ReadLine()));
+                    sb.Append("".PadRight(length, '-'));
+                    bit(0, length - 1, length);
+                    answer.AppendLine(sb.ToString());
+                    sb.Clear();
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+            }
+            Console.WriteLine(answer);
+
+            void bit(int start, int end, int count)
+            {
+                if (count == 1)
+                    return;
+
+                var value = count / 3;
+                sb.Replace('-', ' ', start + value, value);
+
+                bit(start, start + value - 1, value);
+                bit(end - value + 1, end, value);
+            }
+        }
+    }
+
     public class Day241203
     {
         public static void Porlbem28279()
