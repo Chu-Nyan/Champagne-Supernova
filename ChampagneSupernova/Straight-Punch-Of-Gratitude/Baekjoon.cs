@@ -1,10 +1,39 @@
-﻿using System;
+﻿using ChampagneSupernova.Library.Data_Structure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace CodingTest.Baekjoon
 {
+    public class Day250407
+    {
+        public static void Problem2346()
+        {
+            var count = int.Parse(Console.ReadLine());
+            var items = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            var dequeue = new Deque<int[]>();
+            var answer = "";
+            for (int i = 0; i < count; i++)
+            {
+                var dir = items[i];
+                if (dir > 0)
+                    dir--;
+                dequeue.EnqueueFirst(new int[] { i, dir });
+            }
+
+            while (dequeue.Count > 0)
+            {
+                var item = dequeue.DequeueLast();
+                answer += $"{item[0] + 1} ";
+
+                dequeue.Rotate(item[1]);
+            }
+
+            Console.WriteLine(answer);
+        }
+    }
+
     public class Day241204
     {
         public static void Problem4779()
