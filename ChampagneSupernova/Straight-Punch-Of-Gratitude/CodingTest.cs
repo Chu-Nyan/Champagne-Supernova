@@ -3,6 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+namespace CodingTest.Programmers
+{
+    public class Day250317
+    {
+        public int solution(int[] A, int[] B)
+        {
+            int answer = 0;
+            Array.Sort(A);
+            Array.Sort(B);
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                answer += A[i] * B[A.Length - i - 1];
+            }
+
+            return answer;
+        }
+    }
+}
 namespace CodingTest.Baekjon
 {
     public class Day241204
