@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CodingTest.Baekjon
+namespace CodingTest.Baekjoon
 {
     public class Day241204
     {
