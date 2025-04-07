@@ -1281,9 +1281,7 @@ namespace CodingTest.Baekjon
             }
         }
     }
-}
-namespace CodingTest.Baekjon.Level23
-{
+
     public static class Day241023
     {
         public static void Problem15649()
@@ -1567,10 +1565,8 @@ namespace CodingTest.Baekjon.Level23
         }
 
     }
-}
 
-namespace CodingTest.Baekjon.Level21
-{
+
     public static class Day241022
     {
         public static void Problem24060()
@@ -1688,14 +1684,7 @@ namespace CodingTest.Baekjon.Level21
                     return Factorial(amount * index, index - 1);
             }
         }
-    }
-}
 
-// 백준 19단계, 조합론
-namespace CodingTest.Baekjon.Level19
-{
-    public static class Day241021
-    {
         public static void Problem1010()
         {
             var count = int.Parse(Console.ReadLine());
@@ -1796,11 +1785,8 @@ namespace CodingTest.Baekjon.Level19
             Console.WriteLine(nums * (nums - 1));
         }
     }
-}
 
-// 백준 14단계, 집합과 맵
-namespace CodingTest.Baekjon.Level14
-{
+
     public static class Day241010
     {
         public static void Problem13241()
@@ -2033,10 +2019,7 @@ namespace CodingTest.Baekjon.Level14
             }
         }
     }
-}
-// 백준 13단계, 정렬
-namespace CodingTest.Baekjon.Level13
-{
+
     public static class Day241004
     {
         public static void Problem18870()
@@ -2288,10 +2271,7 @@ namespace CodingTest.Baekjon.Level13
             }
         }
     }
-}
-// 백준 12단계, 브루트 포스
-namespace CodingTest.Baekjon.Level12
-{
+
     public static class Day240927
     {
         public static void Problem2839()
@@ -2464,11 +2444,7 @@ namespace CodingTest.Baekjon.Level12
             }
         }
     }
-}
 
-// 백준 11단계, 시간 복잡도
-namespace CodingTest.Baekjon.Level11
-{
     public static class Day240919
     {
         public static void Problem24313()
@@ -2538,11 +2514,6 @@ namespace CodingTest.Baekjon.Level11
             Console.WriteLine(0);
         }
     }
-}
-
-// 백준 10단계, 기하: 직사각형과 삼각형
-namespace CodingTest.Baekjoon.Level10
-{
     public static class Day240913
     {
         public static void Problem14215()
@@ -2729,10 +2700,7 @@ namespace CodingTest.Baekjoon.Level10
             Console.WriteLine(a * b);
         }
     }
-}
-// 백준 9단계, 배수와 소수
-namespace CodingTest.Baekjoon.Level9
-{
+
     public static class Day240910
     {
         public static void Problem11653()
@@ -2932,11 +2900,7 @@ namespace CodingTest.Baekjoon.Level9
 
         }
     }
-}
 
-// 백준 8단계 일반 수학 1
-namespace CodingTest.Baekjoon.Level8
-{
     public static class Day240905
     {
         public static void Problem2869()
@@ -3072,10 +3036,7 @@ namespace CodingTest.Baekjoon.Level8
             Console.WriteLine(result);
         }
     }
-}
-// 백준 7단계 행렬
-namespace CodingTest.Baekjoon.Level7
-{
+
     public static class Day240902
     {
         public static void Problem2563()
@@ -3189,11 +3150,7 @@ namespace CodingTest.Baekjoon.Level7
             }
         }
     }
-}
 
-// 백준 6단계 심화 1,
-namespace CodingTest.Baekjoon.Level6
-{
     public static class Day240823
     {
         public static void Problem25206()
@@ -3381,10 +3338,7 @@ namespace CodingTest.Baekjoon.Level6
             Console.WriteLine("      |");
         }
     }
-}
-// 백준 5단계 문자열,
-namespace CodingTest.Baekjoon.Level5
-{
+
     public static class Day240819
     {
         public static void Problem11718()
@@ -3538,11 +3492,7 @@ namespace CodingTest.Baekjoon.Level5
             Console.WriteLine(sb);
         }
     }
-}
 
-// 백준 4단계 1차원 배열,
-namespace CodingTest.Baekjoon.Level4
-{
     public class Day240628
     {
         public static void Problem1546()
@@ -3768,11 +3718,7 @@ namespace CodingTest.Baekjoon.Level4
             Console.WriteLine(result);
         }
     }
-}
 
-// 백준 3단계 반복문, https://www.acmicpc.net/step/3
-namespace CodingTest.Baekjoon.Level3
-{
     public class Day240626
     {
         public static void Problem10951()
@@ -3961,11 +3907,7 @@ namespace CodingTest.Baekjoon.Level3
             }
         }
     }
-}
 
-// 백준 2단계 조건문, https://www.acmicpc.net/step/4
-namespace CodingTest.Baekjoon.Level2
-{
     public class Day240624
     {
         public static void Problem2480()
@@ -4098,11 +4040,7 @@ namespace CodingTest.Baekjoon.Level2
             Console.WriteLine(result);
         }
     }
-}
 
-// 백준 1단계 입출력과 사칙연산, https://www.acmicpc.net/step/1
-namespace CodingTest.Baekjoon.Level1
-{
     public class Day240619
     {
         public static void Problem2557()
