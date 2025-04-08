@@ -5,6 +5,38 @@ using System.Text;
 
 namespace Programmers
 {
+    public class Day250408
+    {
+        public class Solution12911
+        {
+            public int solution(int n)
+            {
+                int index = 0;
+                var count = CountBinary(n);
+
+                while (true)
+                {
+                    index++;
+                    var nextCount = CountBinary(n + index);
+                    if (nextCount == count)
+                        return n + index;
+                }
+            }
+
+            private int CountBinary(int number)
+            {
+                var count = 0;
+                while (number != 0)
+                {
+                    count += number & 1;
+                    number >>= 1;
+                }
+
+                return count;
+            }
+        }
+    }
+
     public class Day250317
     {
         public int solution(int[] A, int[] B)
