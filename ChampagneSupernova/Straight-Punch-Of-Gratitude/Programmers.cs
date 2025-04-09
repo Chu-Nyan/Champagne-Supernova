@@ -5,6 +5,27 @@ using System.Text;
 
 namespace Programmers
 {
+    public class Day250409
+    {
+        class Solution12980
+        {
+            public int solution(int n)
+            {
+                int answer = 0;
+
+                while (n > 0)
+                {
+                    if (n % 2 == 1)
+                        answer++;
+
+                    n /= 2;
+                }
+
+                return answer;
+            }
+        }
+    }
+
     public class Day250408
     {
         public class Solution12911
