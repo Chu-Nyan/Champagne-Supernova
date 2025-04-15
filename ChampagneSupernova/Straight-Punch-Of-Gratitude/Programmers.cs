@@ -5,6 +5,31 @@ using System.Text;
 
 namespace Programmers
 {
+    public class Day250415
+    {
+        public class Solution138476
+        {
+            public int solution(int k, int[] tangerine)
+            {
+                int answer = 0;
+                var arr = new int[tangerine.Length];
+                foreach (var i in tangerine)
+                {
+                    arr[i] += 1;
+                }
+                Array.Sort(arr,(a,b) =>  b.CompareTo(a));
+
+                while (k > 0)
+                {
+                    k -= arr[answer];
+                    answer++;
+                }
+
+                return answer;
+            }
+        }
+    }
+
     public class Day250409
     {
         class Solution12980
@@ -1820,6 +1845,6 @@ namespace Programmers
                 }
             }
 
-        } 
+        }
     }
 }
