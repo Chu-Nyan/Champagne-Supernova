@@ -5,6 +5,36 @@ using System.Text;
 
 namespace Programmers
 {
+    public class Day250418
+    {
+        class Solution
+        {
+            public int[] solution(int n, string[] words)
+            {
+                var answer = new int[2];
+                var hashset = new HashSet<string>();
+                var start = words[0][0];
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    if (hashset.Contains(words[i]) == true || words[i][0] != start)
+                    {
+                        answer[0] = (i % n) + 1;
+                        answer[1] = (i / n) + 1;
+                        break;
+                    }
+
+                    hashset.Add(words[i]);
+                    var lastIndex = words[i].Length - 1;
+                    start = words[i][lastIndex];
+                }
+
+                return answer;
+            }
+        }
+
+    }
+
     public class Day250416
     {
         public class Solution12914
@@ -37,7 +67,7 @@ namespace Programmers
                 {
                     arr[i] += 1;
                 }
-                Array.Sort(arr,(a,b) =>  b.CompareTo(a));
+                Array.Sort(arr, (a, b) => b.CompareTo(a));
 
                 while (k > 0)
                 {
