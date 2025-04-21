@@ -5,6 +5,30 @@ using System.Text;
 
 namespace Programmers
 {
+    public class Day250421
+    {
+        public class Solution131701
+        {
+            public int solution(int[] elements)
+            {
+                var hash = new HashSet<int>();
+
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    var sum = 0;
+                    for (int j = 0; j < elements.Length; j++)
+                    {
+                        var index = (j + i) % elements.Length;
+                        sum += elements[index];
+                        hash.Add(sum);
+                    }
+                }
+
+                return hash.Count;
+            }
+        }
+    }
+
     public class Day250418
     {
         class Solution
